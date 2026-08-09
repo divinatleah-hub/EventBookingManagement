@@ -1,0 +1,134 @@
+Enum user_role {
+  CUSTOMER
+  ADMIN
+  ORGANIZER
+}
+
+Enum booking_status {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+Enum payment_status {
+  PENDING
+  SUCCESS
+  FAILED
+  REFUNDED
+}
+
+Enum ticket_status {
+  ACTIVE
+  CANCELLED
+}
+
+Table User {
+  user_id int [pk, increment]
+  name varchar(100) [not null]
+  email varchar(100) [not null, unique]
+  password varchar(255) [not null]
+  phone varchar(15)
+  role user_role [not null]
+  created_at datetime
+}
+
+Table Admin {
+  admin_id int [pk, increment]
+  user_id int [not null, unique]
+}
+
+Table Organizer {
+  organizer_id int [pk, increment]
+  user_id int [not null, unique]
+  organization_name varchar(150)
+}
+
+Table Venue {
+  venue_id int [pk, increment]
+  venue_name varchar(150) [not null]
+  location varchar(255)
+  capacity int
+}
+
+Table Seat {
+  seat_id int [pk, increment]
+  venue_id int [not null]
+  seat_number varchar(20) [not null]
+  seat_type varchar(50)
+}
+
+Table Event {
+  event_id int [pk, increment]
+  organizer_id int [not null]
+  venue_id int [not null]
+  event_name varchar(150) [not null]
+  description text
+  event_date date [not null]
+  start_time time
+  end_time time
+  ticket_price decimal(10,2) [not null]
+  created_at datetime
+}
+
+Table Booking {
+  booking_id int [pk, increment]
+  user_id int [not null]
+  event_id int [not null]
+  booking_date datetime
+  total_amount decimal(10,2)
+  status booking_status [not null]
+}
+
+Table Booking_Seat {
+  booking_seat_id int [pk, increment]
+  booking_id int [not null]
+  seat_id int [not null]
+
+  indexes {
+    (booking_id, seat_id) [unique]
+  }
+}
+
+Table Ticket {
+  ticket_id int [pk, increment]
+  booking_seat_id int [not null, unique]
+  ticket_number varchar(50) [not null, unique]
+  ticket_price decimal(10,2)
+  status ticket_status [not null]
+  generated_at datetime
+}
+
+Table Payment {
+  payment_id int [pk, increment]
+  booking_id int [not null, unique]
+  payment_date datetime
+  amount decimal(10,2)
+  payment_method varchar(50)
+  status payment_status [not null]
+  transaction_id varchar(100)
+}
+
+
+// Relationships
+
+Ref: Admin.user_id - User.user_id
+
+Ref: Organizer.user_id - User.user_id
+
+Ref: Organizer.organizer_id < Event.organizer_id
+
+Ref: Venue.venue_id < Seat.venue_id
+
+Ref: Venue.venue_id < Event.venue_id
+
+Ref: User.user_id < Booking.user_id
+
+Ref: Event.event_id < Booking.event_id
+
+Ref: Booking.booking_id < Booking_Seat.booking_id
+
+Ref: Seat.seat_id < Booking_Seat.seat_id
+
+Ref: Booking_Seat.booking_seat_id - Ticket.booking_seat_id
+
+Ref: Booking.booking_id - Payment.booking_id
