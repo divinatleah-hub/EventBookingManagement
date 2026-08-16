@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Ticket - EventBook</title>
+
+    <link rel="stylesheet" href="css/ticket.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            Event<span>Book</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="login.html">Login</a>
+        </nav>
+
+    </header>
+
+
+    <main class="ticket-section">
+
+        <div class="ticket-container">
+
+            <div class="ticket-header">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h1>Your Ticket</h1>
+
+                <p>
+                    Your booking has been confirmed successfully.
+                </p>
+
+            </div>
+
+
+            <div class="ticket-card">
+
+                <div class="ticket-top">
+
+                    <div>
+                        <p class="ticket-label">
+                            EVENTBOOK
+                        </p>
+
+                        <h2>
+                            Summer Music Festival
+                        </h2>
+                    </div>
+
+                    <div class="ticket-status">
+                        CONFIRMED
+                    </div>
+
+                </div>
+
+
+                <div class="ticket-divider"></div>
+
+
+                <div class="event-details">
+
+                    <div class="detail">
+
+                        <span>📅 Date</span>
+
+                        <strong>
+                            20 August 2026
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span>⏰ Time</span>
+
+                        <strong>
+                            6:00 PM - 10:00 PM
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail">
+
+                        <span>📍 Venue</span>
+
+                        <strong>
+                            Trichy Convention Hall
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ticket-divider"></div>
+
+
+                <div class="customer-details">
+
+                    <h3>Customer Details</h3>
+
+
+                    <div class="info-row">
+
+                        <span>
+                            Name
+                        </span>
+
+                        <strong id="customerName">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span>
+                            Email
+                        </span>
+
+                        <strong id="customerEmail">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ticket-divider"></div>
+
+
+                <div class="seat-section">
+
+                    <h3>Seat Details</h3>
+
+
+                    <div class="seat-box">
+
+                        <span>
+                            Selected Seats
+                        </span>
+
+                        <strong id="selectedSeats">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div class="seat-box">
+
+                        <span>
+                            Number of Seats
+                        </span>
+
+                        <strong id="seatCount">
+                            -
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ticket-total">
+
+                    <span>
+                        Total Amount
+                    </span>
+
+                    <strong id="totalAmount">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <div class="booking-info">
+
+                    <div>
+
+                        <span>
+                            Booking ID
+                        </span>
+
+                        <strong id="bookingId">
+                            -
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Payment Status
+                        </span>
+
+                        <strong class="paid">
+                            Paid
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ticket-note">
+
+                    <p>
+                        Please show this ticket at the event entrance.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="ticket-actions">
+
+                <button
+                    type="button"
+                    id="printButton"
+                >
+                    Print Ticket
+                </button>
+
+
+                <a href="events.html">
+                    Browse More Events
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 EventBook. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="js/ticket.js"></script>
+
+</body>
+</html>
