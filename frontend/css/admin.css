@@ -1,0 +1,290 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f7fb;
+    color: #1e293b;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.admin-navbar {
+    height: 70px;
+
+    background-color: #0f172a;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 60px;
+}
+
+.admin-logo {
+    color: white;
+
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.admin-logo span {
+    color: #3b82f6;
+}
+
+.home-link {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+}
+
+.home-link:hover {
+    color: #60a5fa;
+}
+
+
+/* =========================
+   LOGIN SECTION
+========================= */
+
+.admin-login-section {
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 50px 20px;
+}
+
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.admin-login-card {
+    width: 100%;
+    max-width: 420px;
+
+    background-color: white;
+
+    padding: 40px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.08);
+
+    text-align: center;
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.admin-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    background-color: #eff6ff;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 30px;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.admin-login-card h1 {
+    color: #0f172a;
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+.admin-subtitle {
+    color: #64748b;
+
+    font-size: 14px;
+
+    margin-bottom: 28px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    text-align: left;
+
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 7px;
+}
+
+.form-group input {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.admin-login-btn {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background-color: #2563eb;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.admin-login-btn:hover {
+    background-color: #1d4ed8;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.admin-message {
+    min-height: 20px;
+
+    margin-top: 15px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   BACK LINK
+========================= */
+
+.back-link {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.admin-footer {
+    background-color: #020617;
+
+    color: #94a3b8;
+
+    text-align: center;
+
+    padding: 18px;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .admin-navbar {
+        padding: 0 20px;
+    }
+
+    .admin-logo {
+        font-size: 23px;
+    }
+
+    .admin-login-section {
+        padding: 30px 15px;
+    }
+
+    .admin-login-card {
+        padding: 30px 22px;
+    }
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login - EventBook</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+    <header class="admin-navbar">
+
+        <div class="admin-logo">
+            Event<span>Book</span>
+        </div>
+
+        <a href="../index.html" class="home-link">
+            Home
+        </a>
+
+    </header>
+
+
+    <main class="admin-login-section">
+
+        <div class="admin-login-card">
+
+            <div class="admin-icon">
+                🔐
+            </div>
+
+            <h1>Admin Login</h1>
+
+            <p class="admin-subtitle">
+                Login to manage EventBook
+            </p>
+
+
+            <form id="adminLoginForm">
+
+                <div class="form-group">
+
+                    <label for="adminEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="adminEmail"
+                        placeholder="Enter admin email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="adminPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Enter admin password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="admin-login-btn"
+                >
+                    Login
+                </button>
+
+            </form>
+
+
+            <p
+                id="adminLoginMessage"
+                class="admin-message"
+            ></p>
+
+
+            <a
+                href="../index.html"
+                class="back-link"
+            >
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <footer class="admin-footer">
+
+        <p>
+            © 2026 EventBook. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="../js/admin.js"></script>
+
+</body>
+
+</html>
