@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Event Details - EventBook</title>
+
+    <link rel="stylesheet" href="css/event-details.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="logo">
+            Event<span>Book</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb-section">
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <a href="events.html">Events</a>
+            <span>›</span>
+            <span>Event Details</span>
+        </div>
+
+    </section>
+
+
+    <!-- Event Details -->
+    <main class="details-section">
+
+        <div class="details-container">
+
+
+            <!-- Event Image -->
+            <div class="event-main-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30"
+                    alt="Summer Music Festival"
+                >
+
+                <span class="event-category">
+                    Music
+                </span>
+
+            </div>
+
+
+            <!-- Event Information -->
+            <div class="event-information">
+
+                <h1>
+                    Summer Music Festival
+                </h1>
+
+                <p class="event-intro">
+                    Experience an unforgettable evening filled with
+                    live music, entertainment and amazing performances.
+                </p>
+
+
+                <!-- Event Info -->
+                <div class="info-grid">
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+                            📅
+                        </div>
+
+                        <div>
+                            <span>Date</span>
+                            <strong>20 August 2026</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+                            🕐
+                        </div>
+
+                        <div>
+                            <span>Time</span>
+                            <strong>6:00 PM - 10:00 PM</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+                            📍
+                        </div>
+
+                        <div>
+                            <span>Venue</span>
+                            <strong>Trichy Convention Hall</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+                            🎟️
+                        </div>
+
+                        <div>
+                            <span>Ticket Price</span>
+                            <strong>₹500</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Description -->
+                <div class="description">
+
+                    <h2>About the Event</h2>
+
+                    <p>
+                        Summer Music Festival is a special live music
+                        event designed for music lovers and entertainment
+                        enthusiasts.
+                    </p>
+
+                    <p>
+                        Enjoy live performances, energetic music,
+                        entertainment activities and a memorable evening
+                        with friends and family.
+                    </p>
+
+                </div>
+
+
+                <!-- Availability -->
+                <div class="availability-box">
+
+                    <div>
+
+                        <span>
+                            Available Seats
+                        </span>
+
+                        <strong id="availableSeats">
+                            120
+                        </strong>
+
+                    </div>
+
+                    <div class="seat-status">
+                        Seats Available
+                    </div>
+
+                </div>
+
+
+                <!-- Booking -->
+                <div class="booking-section">
+
+                    <div class="price-section">
+
+                        <span>
+                            Ticket Price
+                        </span>
+
+                        <strong>
+                            ₹500
+                        </strong>
+
+                        <small>
+                            per seat
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        id="bookNowButton"
+                        class="book-button"
+                    >
+                        Book Now
+                    </button>
+
+                </div>
+
+
+                <!-- Message -->
+                <p
+                    id="bookingMessage"
+                    class="booking-message"
+                ></p>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Event Highlights -->
+    <section class="highlights-section">
+
+        <div class="highlights-container">
+
+            <div class="highlight-card">
+
+                <div class="highlight-icon">
+                    🎫
+                </div>
+
+                <h3>Easy Booking</h3>
+
+                <p>
+                    Select your preferred seat and book your ticket
+                    quickly online.
+                </p>
+
+            </div>
+
+
+            <div class="highlight-card">
+
+                <div class="highlight-icon">
+                    💺
+                </div>
+
+                <h3>Seat Selection</h3>
+
+                <p>
+                    Choose your preferred available seat before
+                    completing your booking.
+                </p>
+
+            </div>
+
+
+            <div class="highlight-card">
+
+                <div class="highlight-icon">
+                    🔒
+                </div>
+
+                <h3>Secure Booking</h3>
+
+                <p>
+                    Your booking details are safely managed by
+                    EventBook.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+
+                <h3>EventBook</h3>
+
+                <p>
+                    Event Ticketing & Seat Booking Platform
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>Quick Links</h4>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="events.html">
+                    Events
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+                <a href="register.html">
+                    Register
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>Contact</h4>
+
+                <p>
+                    Email: support@eventbook.com
+                </p>
+
+                <p>
+                    Phone: +91 98765 43210
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <p>
+                © 2026 EventBook. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/event-details.js"></script>
+
+</body>
+</html>
