@@ -5,6 +5,10 @@ const adminLoginMessage =
     document.getElementById("adminLoginMessage");
 
 
+/* =========================
+   ADMIN LOGIN
+========================= */
+
 if (adminLoginForm) {
 
     adminLoginForm.addEventListener(
@@ -12,7 +16,6 @@ if (adminLoginForm) {
         function(event) {
 
             event.preventDefault();
-
 
             const email =
                 document.getElementById("adminEmail")
@@ -22,7 +25,6 @@ if (adminLoginForm) {
             const password =
                 document.getElementById("adminPassword")
                 .value;
-
 
             const correctEmail =
                 "admin@eventbook.com";
@@ -46,7 +48,6 @@ if (adminLoginForm) {
                     email
                 );
 
-
                 adminLoginMessage.textContent =
                     "Login successful!";
 
@@ -54,15 +55,12 @@ if (adminLoginForm) {
                     "#16a34a";
 
 
-                setTimeout(
-                    function() {
+                setTimeout(function() {
 
-                        window.location.href =
-                            "dashboard.html";
+                    window.location.href =
+                        "dashboard.html";
 
-                    },
-                    800
-                );
+                }, 800);
 
 
             } else {
@@ -73,6 +71,52 @@ if (adminLoginForm) {
                 adminLoginMessage.style.color =
                     "#dc2626";
             }
+
+        }
+    );
+}
+
+
+/* =========================
+   DASHBOARD ACCESS
+========================= */
+
+const logoutButton =
+    document.getElementById("logoutButton");
+
+
+if (logoutButton) {
+
+    const adminLoggedIn =
+        localStorage.getItem("adminLoggedIn");
+
+
+    if (adminLoggedIn !== "true") {
+
+        window.location.href =
+            "admin-login.html";
+
+    }
+
+
+    /* =========================
+       LOGOUT
+    ========================= */
+
+    logoutButton.addEventListener(
+        "click",
+        function() {
+
+            localStorage.removeItem(
+                "adminLoggedIn"
+            );
+
+            localStorage.removeItem(
+                "adminEmail"
+            );
+
+            window.location.href =
+                "admin-login.html";
 
         }
     );

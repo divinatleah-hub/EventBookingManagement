@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - EventBook</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <header class="dashboard-navbar">
+
+        <div class="admin-logo">
+            Event<span>Book</span>
+        </div>
+
+        <div class="dashboard-nav-right">
+
+            <span class="admin-name">
+                Admin
+            </span>
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-btn">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Dashboard Layout -->
+
+    <div class="dashboard-layout">
+
+
+        <!-- Sidebar -->
+
+        <aside class="admin-sidebar">
+
+            <h3>Admin Panel</h3>
+
+            <a href="dashboard.html" class="active">
+                Dashboard
+            </a>
+
+            <a href="manage-events.html">
+                Manage Events
+            </a>
+
+            <a href="manage-seats.html">
+                Manage Seats
+            </a>
+
+            <a href="manage-bookings.html">
+                Manage Bookings
+            </a>
+
+            <a href="manage-users.html">
+                Manage Users
+            </a>
+
+        </aside>
+
+
+        <!-- Main Content -->
+
+        <main class="dashboard-main">
+
+
+            <!-- Heading -->
+
+            <div class="dashboard-heading">
+
+                <h1>
+                    Admin Dashboard
+                </h1>
+
+                <p>
+                    Welcome back, Admin! Manage your EventBook platform.
+                </p>
+
+            </div>
+
+
+            <!-- Statistics -->
+
+            <section class="stats-grid">
+
+
+                <!-- Users -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Users
+                        </p>
+
+                        <h2 id="totalUsers">
+                            120
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Events -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🎫
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Events
+                        </p>
+
+                        <h2 id="totalEvents">
+                            15
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Bookings -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📋
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Bookings
+                        </p>
+
+                        <h2 id="totalBookings">
+                            86
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Revenue -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        💰
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Revenue
+                        </p>
+
+                        <h2 id="totalRevenue">
+                            ₹43,000
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Quick Management -->
+
+            <section class="quick-section">
+
+                <h2>
+                    Quick Management
+                </h2>
+
+                <p class="section-description">
+                    Manage the main parts of the EventBook platform.
+                </p>
+
+
+                <div class="management-grid">
+
+
+                    <!-- Events -->
+
+                    <a
+                        href="manage-events.html"
+                        class="management-card">
+
+                        <div class="management-icon">
+                            🎫
+                        </div>
+
+                        <h3>
+                            Manage Events
+                        </h3>
+
+                        <p>
+                            Add, update and delete events.
+                        </p>
+
+                        <span>
+                            Open →
+                        </span>
+
+                    </a>
+
+
+                    <!-- Seats -->
+
+                    <a
+                        href="manage-seats.html"
+                        class="management-card">
+
+                        <div class="management-icon">
+                            💺
+                        </div>
+
+                        <h3>
+                            Manage Seats
+                        </h3>
+
+                        <p>
+                            Manage venue seats and availability.
+                        </p>
+
+                        <span>
+                            Open →
+                        </span>
+
+                    </a>
+
+
+                    <!-- Bookings -->
+
+                    <a
+                        href="manage-bookings.html"
+                        class="management-card">
+
+                        <div class="management-icon">
+                            📋
+                        </div>
+
+                        <h3>
+                            Manage Bookings
+                        </h3>
+
+                        <p>
+                            View and manage customer bookings.
+                        </p>
+
+                        <span>
+                            Open →
+                        </span>
+
+                    </a>
+
+
+                    <!-- Users -->
+
+                    <a
+                        href="manage-users.html"
+                        class="management-card">
+
+                        <div class="management-icon">
+                            👥
+                        </div>
+
+                        <h3>
+                            Manage Users
+                        </h3>
+
+                        <p>
+                            View and manage registered users.
+                        </p>
+
+                        <span>
+                            Open →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- Recent Bookings -->
+
+            <section class="recent-section">
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <h2>
+                            Recent Bookings
+                        </h2>
+
+                        <p>
+                            Latest customer bookings
+                        </p>
+
+                    </div>
+
+                    <a href="manage-bookings.html">
+                        View All
+                    </a>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Booking ID
+                                </th>
+
+                                <th>
+                                    Customer
+                                </th>
+
+                                <th>
+                                    Event
+                                </th>
+
+                                <th>
+                                    Seats
+                                </th>
+
+                                <th>
+                                    Amount
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                            <tr>
+
+                                <td>
+                                    EB1001
+                                </td>
+
+                                <td>
+                                    Divina
+                                </td>
+
+                                <td>
+                                    Summer Music Festival
+                                </td>
+
+                                <td>
+                                    A1, A2
+                                </td>
+
+                                <td>
+                                    ₹1000
+                                </td>
+
+                                <td>
+
+                                    <span class="status confirmed">
+                                        Confirmed
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    EB1002
+                                </td>
+
+                                <td>
+                                    Priya
+                                </td>
+
+                                <td>
+                                    College Cultural Event
+                                </td>
+
+                                <td>
+                                    B4
+                                </td>
+
+                                <td>
+                                    ₹500
+                                </td>
+
+                                <td>
+
+                                    <span class="status confirmed">
+                                        Confirmed
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    EB1003
+                                </td>
+
+                                <td>
+                                    Rahul
+                                </td>
+
+                                <td>
+                                    Tech Conference
+                                </td>
+
+                                <td>
+                                    C1, C2
+                                </td>
+
+                                <td>
+                                    ₹1200
+                                </td>
+
+                                <td>
+
+                                    <span class="status pending">
+                                        Pending
+                                    </span>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script src="../js/admin.js"></script>
+
+</body>
+
+</html>
