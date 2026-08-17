@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Events - EventBook</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <header class="dashboard-navbar">
+
+        <div class="admin-logo">
+            Event<span>Book</span>
+        </div>
+
+        <div class="dashboard-nav-right">
+
+            <span class="admin-name">
+                Admin
+            </span>
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-btn">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Layout -->
+
+    <div class="dashboard-layout">
+
+
+        <!-- Sidebar -->
+
+        <aside class="admin-sidebar">
+
+            <h3>Admin Panel</h3>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="manage-events.html" class="active">
+                Manage Events
+            </a>
+
+            <a href="manage-seats.html">
+                Manage Seats
+            </a>
+
+            <a href="manage-bookings.html">
+                Manage Bookings
+            </a>
+
+            <a href="manage-users.html">
+                Manage Users
+            </a>
+
+        </aside>
+
+
+        <!-- Main Content -->
+
+        <main class="dashboard-main">
+
+
+            <!-- Heading -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        Manage Events
+                    </h1>
+
+                    <p>
+                        Add, view, edit and manage events.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="addEventButton">
+                    + Add Event
+                </button>
+
+            </div>
+
+
+            <!-- Add Event Form -->
+
+            <section
+                class="admin-form-card"
+                id="eventFormSection"
+                style="display: none;">
+
+                <h2>
+                    Add New Event
+                </h2>
+
+                <form id="eventForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="eventName">
+                                Event Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="eventName"
+                                placeholder="Enter event name"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="eventDate">
+                                Event Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="eventDate"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="eventTime">
+                                Event Time
+                            </label>
+
+                            <input
+                                type="time"
+                                id="eventTime"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="eventVenue">
+                                Venue
+                            </label>
+
+                            <input
+                                type="text"
+                                id="eventVenue"
+                                placeholder="Enter venue"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="eventPrice">
+                                Ticket Price
+                            </label>
+
+                            <input
+                                type="number"
+                                id="eventPrice"
+                                placeholder="Enter price"
+                                min="0"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="eventCategory">
+                                Category
+                            </label>
+
+                            <select id="eventCategory" required>
+
+                                <option value="">
+                                    Select category
+                                </option>
+
+                                <option value="Music">
+                                    Music
+                                </option>
+
+                                <option value="Sports">
+                                    Sports
+                                </option>
+
+                                <option value="Conference">
+                                    Conference
+                                </option>
+
+                                <option value="Cultural">
+                                    Cultural
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="primary-btn">
+                            Save Event
+                        </button>
+
+                        <button
+                            type="button"
+                            class="secondary-btn"
+                            id="cancelEventButton">
+                            Cancel
+                        </button>
+
+                    </div>
+
+                    <p
+                        id="eventMessage"
+                        class="form-message">
+                    </p>
+
+                </form>
+
+            </section>
+
+
+            <!-- Events Table -->
+
+            <section class="admin-table-card">
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h2>
+                            Events
+                        </h2>
+
+                        <p>
+                            List of available events
+                        </p>
+
+                    </div>
+
+                    <input
+                        type="text"
+                        id="eventSearch"
+                        class="search-input"
+                        placeholder="Search events...">
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    ID
+                                </th>
+
+                                <th>
+                                    Event Name
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Time
+                                </th>
+
+                                <th>
+                                    Venue
+                                </th>
+
+                                <th>
+                                    Category
+                                </th>
+
+                                <th>
+                                    Price
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="eventsTableBody">
+
+                            <tr>
+
+                                <td>
+                                    E001
+                                </td>
+
+                                <td>
+                                    Summer Music Festival
+                                </td>
+
+                                <td>
+                                    25-08-2026
+                                </td>
+
+                                <td>
+                                    6:00 PM
+                                </td>
+
+                                <td>
+                                    City Auditorium
+                                </td>
+
+                                <td>
+                                    Music
+                                </td>
+
+                                <td>
+                                    ₹500
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+                                        Delete
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    E002
+                                </td>
+
+                                <td>
+                                    Tech Conference
+                                </td>
+
+                                <td>
+                                    30-08-2026
+                                </td>
+
+                                <td>
+                                    10:00 AM
+                                </td>
+
+                                <td>
+                                    Convention Hall
+                                </td>
+
+                                <td>
+                                    Conference
+                                </td>
+
+                                <td>
+                                    ₹600
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+                                        Delete
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    E003
+                                </td>
+
+                                <td>
+                                    College Cultural Event
+                                </td>
+
+                                <td>
+                                    05-09-2026
+                                </td>
+
+                                <td>
+                                    5:00 PM
+                                </td>
+
+                                <td>
+                                    College Ground
+                                </td>
+
+                                <td>
+                                    Cultural
+                                </td>
+
+                                <td>
+                                    ₹300
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+                                        Delete
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="../js/admin.js"></script>
+
+</body>
+
+</html>
