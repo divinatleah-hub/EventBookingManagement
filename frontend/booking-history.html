@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Booking History - EventBook</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fb;
+            color: #1e293b;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            background-color: #0f172a;
+            color: white;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 40px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #60a5fa;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #60a5fa;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+            max-width: 1100px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+        }
+
+        .page-header {
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* =========================
+           SUMMARY CARDS
+        ========================= */
+
+        .summary-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background-color: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(15, 23, 42, 0.05);
+        }
+
+        .summary-card p {
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .summary-card h2 {
+            color: #0f172a;
+            font-size: 25px;
+        }
+
+        /* =========================
+           SEARCH
+        ========================= */
+
+        .history-card {
+            background-color: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 10px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(15, 23, 42, 0.05);
+        }
+
+        .history-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+            gap: 15px;
+        }
+
+        .history-header h2 {
+            font-size: 20px;
+            color: #0f172a;
+        }
+
+        .search-box {
+            width: 230px;
+
+            padding: 10px 12px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 6px;
+
+            outline: none;
+
+            font-size: 13px;
+        }
+
+        .search-box:focus {
+            border-color: #2563eb;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 750px;
+        }
+
+        th {
+            background-color: #f8fafc;
+
+            color: #475569;
+
+            text-align: left;
+
+            padding: 14px;
+
+            font-size: 12px;
+
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        td {
+            padding: 14px;
+
+            color: #475569;
+
+            font-size: 12px;
+
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* =========================
+           STATUS
+        ========================= */
+
+        .status {
+            display: inline-block;
+
+            padding: 5px 10px;
+
+            border-radius: 15px;
+
+            font-size: 10px;
+
+            font-weight: bold;
+        }
+
+        .confirmed {
+            background-color: #dcfce7;
+
+            color: #15803d;
+        }
+
+        .cancelled {
+            background-color: #fee2e2;
+
+            color: #dc2626;
+        }
+
+        .pending {
+            background-color: #fef3c7;
+
+            color: #b45309;
+        }
+
+        /* =========================
+           VIEW BUTTON
+        ========================= */
+
+        .view-btn {
+            border: none;
+
+            background-color: #eff6ff;
+
+            color: #2563eb;
+
+            padding: 7px 12px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-size: 11px;
+
+            font-weight: bold;
+        }
+
+        .view-btn:hover {
+            background-color: #dbeafe;
+        }
+
+        /* =========================
+           EMPTY MESSAGE
+        ========================= */
+
+        .empty-message {
+            display: none;
+
+            text-align: center;
+
+            padding: 30px;
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .history-header {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Event<span>Book</span>
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="booking.html">
+                My Booking
+            </a>
+
+            <a href="index.html">
+                Events
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="container">
+
+
+        <div class="page-header">
+
+            <h1>
+                Booking History
+            </h1>
+
+            <p>
+                View your previous and current event bookings.
+            </p>
+
+        </div>
+
+
+
+        <!-- SUMMARY -->
+
+        <section class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <p>
+                    Total Bookings
+                </p>
+
+                <h2 id="totalBookings">
+                    3
+                </h2>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <p>
+                    Confirmed Bookings
+                </p>
+
+                <h2 id="confirmedBookings">
+                    2
+                </h2>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <p>
+                    Total Amount
+                </p>
+
+                <h2 id="totalAmount">
+                    ₹2,250
+                </h2>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- BOOKING HISTORY -->
+
+        <section class="history-card">
+
+
+            <div class="history-header">
+
+                <h2>
+                    My Bookings
+                </h2>
+
+
+                <input
+                    type="text"
+                    id="historySearch"
+                    class="search-box"
+                    placeholder="Search bookings...">
+
+            </div>
+
+
+
+            <div class="table-container">
+
+
+                <table>
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Booking ID
+                            </th>
+
+                            <th>
+                                Event
+                            </th>
+
+                            <th>
+                                Seat
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+
+                    <tbody id="historyTableBody">
+
+
+                        <tr>
+
+                            <td>
+                                B001
+                            </td>
+
+                            <td>
+                                Summer Music Festival
+                            </td>
+
+                            <td>
+                                A101
+                            </td>
+
+                            <td>
+                                20-08-2026
+                            </td>
+
+                            <td>
+                                ₹500
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="status confirmed">
+
+                                    Confirmed
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    type="button"
+                                    class="view-btn"
+                                    onclick="viewBooking('B001')">
+
+                                    View
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                B002
+                            </td>
+
+                            <td>
+                                Tech Conference
+                            </td>
+
+                            <td>
+                                B101
+                            </td>
+
+                            <td>
+                                25-08-2026
+                            </td>
+
+                            <td>
+                                ₹1,000
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="status confirmed">
+
+                                    Confirmed
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    type="button"
+                                    class="view-btn"
+                                    onclick="viewBooking('B002')">
+
+                                    View
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                B003
+                            </td>
+
+                            <td>
+                                College Cultural Event
+                            </td>
+
+                            <td>
+                                C201
+                            </td>
+
+                            <td>
+                                28-08-2026
+                            </td>
+
+                            <td>
+                                ₹750
+                            </td>
+
+                            <td>
+
+                                <span
+                                    class="status cancelled">
+
+                                    Cancelled
+
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <button
+                                    type="button"
+                                    class="view-btn"
+                                    onclick="viewBooking('B003')">
+
+                                    View
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+
+                <div
+                    id="emptyMessage"
+                    class="empty-message">
+
+                    No bookings found.
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <script>
+
+        /* =========================
+           BOOKING SEARCH
+        ========================= */
+
+        const historySearch =
+            document.getElementById(
+                "historySearch"
+            );
+
+        const historyTableBody =
+            document.getElementById(
+                "historyTableBody"
+            );
+
+        const emptyMessage =
+            document.getElementById(
+                "emptyMessage"
+            );
+
+
+        historySearch.addEventListener(
+            "input",
+            function () {
+
+                const searchValue =
+                    historySearch.value
+                    .toLowerCase()
+                    .trim();
+
+
+                const rows =
+                    historyTableBody
+                    .getElementsByTagName("tr");
+
+
+                let visibleRows = 0;
+
+
+                for (
+                    let i = 0;
+                    i < rows.length;
+                    i++
+                ) {
+
+                    const rowText =
+                        rows[i]
+                        .textContent
+                        .toLowerCase();
+
+
+                    if (
+                        rowText.includes(
+                            searchValue
+                        )
+                    ) {
+
+                        rows[i].style.display =
+                            "";
+
+                        visibleRows++;
+
+                    } else {
+
+                        rows[i].style.display =
+                            "none";
+
+                    }
+
+                }
+
+
+                if (visibleRows === 0) {
+
+                    emptyMessage.style.display =
+                        "block";
+
+                } else {
+
+                    emptyMessage.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           VIEW BOOKING
+        ========================= */
+
+        function viewBooking(bookingId) {
+
+            alert(
+                "Booking ID: " +
+                bookingId +
+                "\n\nBooking details will be displayed here."
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
