@@ -56,7 +56,6 @@ if (adminLoginForm) {
 
                     adminLoginMessage.style.color =
                         "#16a34a";
-
                 }
 
 
@@ -80,7 +79,6 @@ if (adminLoginForm) {
 
                     adminLoginMessage.style.color =
                         "#dc2626";
-
                 }
 
             }
@@ -154,9 +152,7 @@ const eventMessage =
     document.getElementById("eventMessage");
 
 
-/* =========================
-   SHOW ADD EVENT FORM
-========================= */
+/* Show Event Form */
 
 if (addEventButton) {
 
@@ -164,15 +160,15 @@ if (addEventButton) {
         "click",
         function () {
 
-            eventFormSection.style.display =
-                "block";
+            if (eventFormSection) {
+
+                eventFormSection.style.display =
+                    "block";
+
+            }
 
             addEventButton.style.display =
                 "none";
-
-            eventFormSection.scrollIntoView({
-                behavior: "smooth"
-            });
 
         }
     );
@@ -180,9 +176,7 @@ if (addEventButton) {
 }
 
 
-/* =========================
-   CANCEL EVENT FORM
-========================= */
+/* Cancel Event Form */
 
 if (cancelEventButton) {
 
@@ -190,17 +184,30 @@ if (cancelEventButton) {
         "click",
         function () {
 
-            eventForm.reset();
+            if (eventForm) {
 
-            eventFormSection.style.display =
-                "none";
+                eventForm.reset();
 
-            addEventButton.style.display =
-                "block";
+            }
+
+            if (eventFormSection) {
+
+                eventFormSection.style.display =
+                    "none";
+
+            }
+
+            if (addEventButton) {
+
+                addEventButton.style.display =
+                    "block";
+
+            }
 
             if (eventMessage) {
 
-                eventMessage.textContent = "";
+                eventMessage.textContent =
+                    "";
 
             }
 
@@ -210,9 +217,7 @@ if (cancelEventButton) {
 }
 
 
-/* =========================
-   ADD EVENT
-========================= */
+/* Add Event */
 
 if (eventForm) {
 
@@ -223,31 +228,56 @@ if (eventForm) {
             event.preventDefault();
 
 
+            const eventNameElement =
+                document.getElementById("eventName");
+
+            const eventDateElement =
+                document.getElementById("eventDate");
+
+            const eventTimeElement =
+                document.getElementById("eventTime");
+
+            const eventVenueElement =
+                document.getElementById("eventVenue");
+
+            const eventPriceElement =
+                document.getElementById("eventPrice");
+
+            const eventCategoryElement =
+                document.getElementById("eventCategory");
+
+
+            if (
+                !eventNameElement ||
+                !eventDateElement ||
+                !eventTimeElement ||
+                !eventVenueElement ||
+                !eventPriceElement ||
+                !eventCategoryElement
+            ) {
+
+                return;
+
+            }
+
+
             const eventName =
-                document.getElementById("eventName")
-                .value
-                .trim();
+                eventNameElement.value.trim();
 
             const eventDate =
-                document.getElementById("eventDate")
-                .value;
+                eventDateElement.value;
 
             const eventTime =
-                document.getElementById("eventTime")
-                .value;
+                eventTimeElement.value;
 
             const eventVenue =
-                document.getElementById("eventVenue")
-                .value
-                .trim();
+                eventVenueElement.value.trim();
 
             const eventPrice =
-                document.getElementById("eventPrice")
-                .value;
+                eventPriceElement.value;
 
             const eventCategory =
-                document.getElementById("eventCategory")
-                .value;
+                eventCategoryElement.value;
 
 
             if (
@@ -259,22 +289,30 @@ if (eventForm) {
                 !eventCategory
             ) {
 
-                eventMessage.textContent =
-                    "Please fill all the fields.";
+                if (eventMessage) {
 
-                eventMessage.style.color =
-                    "#dc2626";
+                    eventMessage.textContent =
+                        "Please fill all the fields.";
+
+                    eventMessage.style.color =
+                        "#dc2626";
+
+                }
 
                 return;
 
             }
 
 
-            eventMessage.textContent =
-                "Event added successfully!";
+            if (eventMessage) {
 
-            eventMessage.style.color =
-                "#16a34a";
+                eventMessage.textContent =
+                    "Event added successfully!";
+
+                eventMessage.style.color =
+                    "#16a34a";
+
+            }
 
 
             setTimeout(
@@ -282,13 +320,26 @@ if (eventForm) {
 
                     eventForm.reset();
 
-                    eventFormSection.style.display =
-                        "none";
+                    if (eventFormSection) {
 
-                    addEventButton.style.display =
-                        "block";
+                        eventFormSection.style.display =
+                            "none";
 
-                    eventMessage.textContent = "";
+                    }
+
+                    if (addEventButton) {
+
+                        addEventButton.style.display =
+                            "block";
+
+                    }
+
+                    if (eventMessage) {
+
+                        eventMessage.textContent =
+                            "";
+
+                    }
 
                 },
                 1000
@@ -300,9 +351,7 @@ if (eventForm) {
 }
 
 
-/* =========================
-   EVENT SEARCH
-========================= */
+/* Event Search */
 
 const eventSearch =
     document.getElementById("eventSearch");
@@ -367,7 +416,329 @@ if (
 
 
 /* =========================
-   DELETE EVENT
+   MANAGE SEATS
+========================= */
+
+const addSeatButton =
+    document.getElementById("addSeatButton");
+
+const seatFormSection =
+    document.getElementById("seatFormSection");
+
+const cancelSeatButton =
+    document.getElementById("cancelSeatButton");
+
+const seatForm =
+    document.getElementById("seatForm");
+
+const seatMessage =
+    document.getElementById("seatMessage");
+
+
+/* Show Seat Form */
+
+if (addSeatButton) {
+
+    addSeatButton.addEventListener(
+        "click",
+        function () {
+
+            if (seatFormSection) {
+
+                seatFormSection.style.display =
+                    "block";
+
+            }
+
+            addSeatButton.style.display =
+                "none";
+
+        }
+    );
+
+}
+
+
+/* Cancel Seat Form */
+
+if (cancelSeatButton) {
+
+    cancelSeatButton.addEventListener(
+        "click",
+        function () {
+
+            if (seatForm) {
+
+                seatForm.reset();
+
+            }
+
+            if (seatFormSection) {
+
+                seatFormSection.style.display =
+                    "none";
+
+            }
+
+            if (addSeatButton) {
+
+                addSeatButton.style.display =
+                    "block";
+
+            }
+
+            if (seatMessage) {
+
+                seatMessage.textContent =
+                    "";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* Add Seat */
+
+if (seatForm) {
+
+    seatForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const seatEvent =
+                document.getElementById("seatEvent");
+
+            const seatNumber =
+                document.getElementById("seatNumber");
+
+            const seatType =
+                document.getElementById("seatType");
+
+            const seatPrice =
+                document.getElementById("seatPrice");
+
+
+            if (
+                !seatEvent ||
+                !seatNumber ||
+                !seatType ||
+                !seatPrice
+            ) {
+
+                return;
+
+            }
+
+
+            if (
+                !seatEvent.value ||
+                !seatNumber.value.trim() ||
+                !seatType.value ||
+                !seatPrice.value
+            ) {
+
+                if (seatMessage) {
+
+                    seatMessage.textContent =
+                        "Please fill all the fields.";
+
+                    seatMessage.style.color =
+                        "#dc2626";
+
+                }
+
+                return;
+
+            }
+
+
+            if (seatMessage) {
+
+                seatMessage.textContent =
+                    "Seat added successfully!";
+
+                seatMessage.style.color =
+                    "#16a34a";
+
+            }
+
+
+            setTimeout(
+                function () {
+
+                    seatForm.reset();
+
+                    if (seatFormSection) {
+
+                        seatFormSection.style.display =
+                            "none";
+
+                    }
+
+                    if (addSeatButton) {
+
+                        addSeatButton.style.display =
+                            "block";
+
+                    }
+
+                    if (seatMessage) {
+
+                        seatMessage.textContent =
+                            "";
+
+                    }
+
+                },
+                1000
+            );
+
+        }
+    );
+
+}
+
+
+/* Seat Search */
+
+const seatSearch =
+    document.getElementById("seatSearch");
+
+const seatsTableBody =
+    document.getElementById("seatsTableBody");
+
+
+if (
+    seatSearch &&
+    seatsTableBody
+) {
+
+    seatSearch.addEventListener(
+        "input",
+        function () {
+
+            const searchValue =
+                seatSearch.value
+                .toLowerCase()
+                .trim();
+
+            const rows =
+                seatsTableBody
+                .getElementsByTagName("tr");
+
+
+            for (
+                let i = 0;
+                i < rows.length;
+                i++
+            ) {
+
+                const rowText =
+                    rows[i]
+                    .textContent
+                    .toLowerCase();
+
+
+                if (
+                    rowText.includes(
+                        searchValue
+                    )
+                ) {
+
+                    rows[i].style.display =
+                        "";
+
+                } else {
+
+                    rows[i].style.display =
+                        "none";
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================
+   MANAGE USERS
+========================= */
+
+const userSearch =
+    document.getElementById("userSearch");
+
+const usersTableBody =
+    document.getElementById("usersTableBody");
+
+
+/* User Search */
+
+if (
+    userSearch &&
+    usersTableBody
+) {
+
+    userSearch.addEventListener(
+        "input",
+        function () {
+
+            const searchValue =
+                userSearch.value
+                .toLowerCase()
+                .trim();
+
+            const rows =
+                usersTableBody
+                .getElementsByTagName("tr");
+
+
+            for (
+                let i = 0;
+                i < rows.length;
+                i++
+            ) {
+
+                const rowText =
+                    rows[i]
+                    .textContent
+                    .toLowerCase();
+
+
+                if (
+                    rowText.includes(
+                        searchValue
+                    )
+                ) {
+
+                    rows[i].style.display =
+                        "";
+
+                } else {
+
+                    rows[i].style.display =
+                        "none";
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================
+   DELETE BUTTONS
 ========================= */
 
 const deleteButtons =
@@ -385,7 +756,7 @@ deleteButtons.forEach(
 
                 const confirmDelete =
                     confirm(
-                        "Are you sure you want to delete this event?"
+                        "Are you sure you want to delete this item?"
                     );
 
 
@@ -402,6 +773,34 @@ deleteButtons.forEach(
                     }
 
                 }
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================
+   EDIT BUTTONS
+========================= */
+
+const editButtons =
+    document.querySelectorAll(
+        ".edit-btn"
+    );
+
+
+editButtons.forEach(
+    function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                alert(
+                    "Edit functionality will be connected to the backend later."
+                );
 
             }
         );

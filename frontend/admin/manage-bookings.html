@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Bookings - EventBook</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <header class="dashboard-navbar">
+
+        <div class="admin-logo">
+            Event<span>Book</span>
+        </div>
+
+        <div class="dashboard-nav-right">
+
+            <span class="admin-name">
+                Admin
+            </span>
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-btn">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Dashboard Layout -->
+
+    <div class="dashboard-layout">
+
+
+        <!-- Sidebar -->
+
+        <aside class="admin-sidebar">
+
+            <h3>
+                Admin Panel
+            </h3>
+
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+
+            <a href="manage-events.html">
+                Manage Events
+            </a>
+
+
+            <a href="manage-seats.html">
+                Manage Seats
+            </a>
+
+
+            <a
+                href="manage-bookings.html"
+                class="active">
+                Manage Bookings
+            </a>
+
+
+            <a href="manage-users.html">
+                Manage Users
+            </a>
+
+        </aside>
+
+
+        <!-- Main Content -->
+
+        <main class="dashboard-main">
+
+
+            <!-- Page Header -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        Manage Bookings
+                    </h1>
+
+                    <p>
+                        View and manage customer event bookings.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Booking Statistics -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🎟️
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Bookings
+                        </p>
+
+                        <h2>
+                            48
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Confirmed
+                        </p>
+
+                        <h2>
+                            40
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ⏳
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Pending
+                        </p>
+
+                        <h2>
+                            5
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✕
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Cancelled
+                        </p>
+
+                        <h2>
+                            3
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Booking Table -->
+
+            <section class="admin-table-card">
+
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h2>
+                            Booking List
+                        </h2>
+
+                        <p>
+                            View all customer bookings.
+                        </p>
+
+                    </div>
+
+
+                    <input
+                        type="text"
+                        id="bookingSearch"
+                        class="search-input"
+                        placeholder="Search bookings...">
+
+                </div>
+
+
+                <div class="table-container">
+
+
+                    <table>
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Booking ID
+                                </th>
+
+                                <th>
+                                    Customer
+                                </th>
+
+                                <th>
+                                    Event
+                                </th>
+
+                                <th>
+                                    Seat
+                                </th>
+
+                                <th>
+                                    Booking Date
+                                </th>
+
+                                <th>
+                                    Amount
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="bookingsTableBody">
+
+
+                            <tr>
+
+                                <td>
+                                    B001
+                                </td>
+
+                                <td>
+                                    Divina
+                                </td>
+
+                                <td>
+                                    Summer Music Festival
+                                </td>
+
+                                <td>
+                                    A101
+                                </td>
+
+                                <td>
+                                    13-08-2026
+                                </td>
+
+                                <td>
+                                    ₹500
+                                </td>
+
+                                <td>
+
+                                    <span class="status confirmed">
+                                        Confirmed
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+                                        View
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+                                        Cancel
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    B002
+                                </td>
+
+                                <td>
+                                    Arun Kumar
+                                </td>
+
+                                <td>
+                                    Tech Conference
+                                </td>
+
+                                <td>
+                                    B101
+                                </td>
+
+                                <td>
+                                    13-08-2026
+                                </td>
+
+                                <td>
+                                    ₹1000
+                                </td>
+
+                                <td>
+
+                                    <span class="status pending">
+                                        Pending
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+                                        View
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+                                        Cancel
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    B003
+                                </td>
+
+                                <td>
+                                    Priya
+                                </td>
+
+                                <td>
+                                    College Cultural Event
+                                </td>
+
+                                <td>
+                                    C201
+                                </td>
+
+                                <td>
+                                    12-08-2026
+                                </td>
+
+                                <td>
+                                    ₹750
+                                </td>
+
+                                <td>
+
+                                    <span class="status confirmed">
+                                        Confirmed
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+                                        View
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+                                        Cancel
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    B004
+                                </td>
+
+                                <td>
+                                    Karthik
+                                </td>
+
+                                <td>
+                                    Summer Music Festival
+                                </td>
+
+                                <td>
+                                    A102
+                                </td>
+
+                                <td>
+                                    11-08-2026
+                                </td>
+
+                                <td>
+                                    ₹750
+                                </td>
+
+                                <td>
+
+                                    <span class="status pending">
+                                        Cancelled
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+                                        View
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+                                        Delete
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <script src="../js/admin.js"></script>
+
+</body>
+
+</html>
