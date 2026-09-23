@@ -19,91 +19,61 @@ const totalAmount =
 const ticketButton =
     document.getElementById("ticketButton");
 
-
-/* GET BOOKING DATA */
-
 const savedBooking =
     localStorage.getItem("bookingData");
 
+function loadBooking() {
 
-if (savedBooking) {
+    if (!savedBooking) {
+        bookingId.textContent = "No booking found";
+        customerName.textContent = "-";
+        customerEmail.textContent = "-";
+        selectedSeats.textContent = "-";
+        seatCount.textContent = "0";
+        totalAmount.textContent = "₹0";
+        return;
+    }
 
-    const bookingData =
-        JSON.parse(savedBooking);
+    try {
+        const bookingData = JSON.parse(savedBooking);
 
-
-    /* BOOKING ID */
-
-    bookingId.textContent =
-        bookingData.bookingId || "EB00000000";
-
-
-    /* CUSTOMER */
-
-    if (bookingData.customer) {
+        bookingId.textContent =
+            bookingData.bookingId || "EB00000000";
 
         customerName.textContent =
-            bookingData.customer.name || "-";
+            bookingData.userName || "-";
 
         customerEmail.textContent =
-            bookingData.customer.email || "-";
+            bookingData.userEmail || "-";
 
+        if (bookingData.seats && bookingData.seats.length > 0) {
+            selectedSeats.textContent =
+                bookingData.seats.join(", ");
+
+            seatCount.textContent =
+                bookingData.seats.length;
+        } else {
+            selectedSeats.textContent = "-";
+            seatCount.textContent = "0";
+        }
+
+        totalAmount.textContent =
+            "₹" + (bookingData.total || 0);
+
+    } catch (error) {
+        bookingId.textContent = "No booking found";
+        customerName.textContent = "-";
+        customerEmail.textContent = "-";
+        selectedSeats.textContent = "-";
+        seatCount.textContent = "0";
+        totalAmount.textContent = "₹0";
     }
-
-
-    /* SEATS */
-
-    if (
-        bookingData.seats &&
-        bookingData.seats.length > 0
-    ) {
-
-        selectedSeats.textContent =
-            bookingData.seats.join(", ");
-
-        seatCount.textContent =
-            bookingData.seats.length;
-
-    }
-
-
-    /* TOTAL */
-
-    totalAmount.textContent =
-        "₹" + (bookingData.total || 0);
-
-
-} else {
-
-    bookingId.textContent =
-        "No booking found";
-
-    customerName.textContent =
-        "-";
-
-    customerEmail.textContent =
-        "-";
-
-    selectedSeats.textContent =
-        "-";
-
-    seatCount.textContent =
-        "0";
-
-    totalAmount.textContent =
-        "₹0";
-
 }
 
+if (ticketButton) {
+    ticketButton.addEventListener("click", function () {
+        window.location.href = "ticket.html";
+    });
+}
 
-/* VIEW TICKET */
-
-ticketButton.addEventListener(
-    "click",
-    function () {
-
-        window.location.href =
-            "ticket.html";
-
-    }
-);
+loadBooking();

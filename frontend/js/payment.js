@@ -1,3 +1,5 @@
+const API = "http://localhost:8080/api";
+
 const paymentForm =
     document.getElementById("paymentForm");
 
@@ -34,16 +36,12 @@ const cvv =
 const upiId =
     document.getElementById("upiId");
 
-
 let selectedMethod = "card";
-
-
-/* =========================
-   LOAD BOOKING DATA
-========================= */
 
 const savedBooking =
     localStorage.getItem("bookingData");
+
+let bookingData = null;
 
 
 if (!savedBooking) {
@@ -53,32 +51,35 @@ if (!savedBooking) {
 
 } else {
 
-    const bookingData =
-        JSON.parse(savedBooking);
+    try {
 
+        bookingData =
+            JSON.parse(savedBooking);
 
-    if (
-        bookingData.seats &&
-        bookingData.seats.length > 0
-    ) {
+        if (
+            bookingData.seats &&
+            bookingData.seats.length > 0
+        ) {
 
-        selectedSeatsElement.textContent =
-            bookingData.seats.join(", ");
+            selectedSeatsElement.textContent =
+                bookingData.seats.join(", ");
 
-        seatCountElement.textContent =
-            bookingData.seats.length;
+            seatCountElement.textContent =
+                bookingData.seats.length;
 
-        totalAmountElement.textContent =
-            "₹" + bookingData.total;
+            totalAmountElement.textContent =
+                "₹" + bookingData.total;
+        }
 
+    } catch (error) {
+
+        paymentMessage.textContent =
+            "Invalid booking information.";
     }
-
 }
 
 
-/* =========================
-   PAYMENT METHOD
-========================= */
+/* PAYMENT METHOD */
 
 methods.forEach(function (method) {
 
@@ -88,264 +89,392 @@ methods.forEach(function (method) {
 
             methods.forEach(function (item) {
 
-                item.classList.remove("active");
+                item.classList.remove(
+                    "active"
+                );
 
             });
 
-
             method.classList.add("active");
-
 
             selectedMethod =
                 method.dataset.method;
 
-
             if (selectedMethod === "card") {
 
-                cardSection.classList.remove("hidden");
+                cardSection.classList.remove(
+                    "hidden"
+                );
 
-                upiSection.classList.add("hidden");
+                upiSection.classList.add(
+                    "hidden"
+                );
 
             } else {
 
-                cardSection.classList.add("hidden");
+                cardSection.classList.add(
+                    "hidden"
+                );
 
-                upiSection.classList.remove("hidden");
-
+                upiSection.classList.remove(
+                    "hidden"
+                );
             }
 
-
             paymentMessage.textContent = "";
-
         }
     );
 
 });
 
 
-/* =========================
-   CARD NUMBER FORMAT
-========================= */
+/* CARD NUMBER */
 
-cardNumber.addEventListener(
-    "input",
-    function () {
+if (cardNumber) {
 
-        let value =
-            cardNumber.value.replace(
-                /\D/g,
-                ""
-            );
+    cardNumber.addEventListener(
+        "input",
+        function () {
 
-        value =
-            value.substring(0, 16);
-
-        value =
-            value.replace(
-                /(.{4})/g,
-                "$1 "
-            );
-
-        cardNumber.value =
-            value.trim();
-
-    }
-);
-
-
-/* =========================
-   EXPIRY FORMAT
-========================= */
-
-expiry.addEventListener(
-    "input",
-    function () {
-
-        let value =
-            expiry.value.replace(
-                /\D/g,
-                ""
-            );
-
-        value =
-            value.substring(0, 4);
-
-
-        if (value.length >= 3) {
-
-            value =
-                value.substring(0, 2)
-                + "/"
-                + value.substring(2);
-
-        }
-
-
-        expiry.value = value;
-
-    }
-);
-
-
-/* =========================
-   CVV
-========================= */
-
-cvv.addEventListener(
-    "input",
-    function () {
-
-        cvv.value =
-            cvv.value.replace(
-                /\D/g,
-                ""
-            );
-
-    }
-);
-
-
-/* =========================
-   PAYMENT SUBMIT
-========================= */
-
-paymentForm.addEventListener(
-    "submit",
-    function (event) {
-
-        event.preventDefault();
-
-
-        if (!savedBooking) {
-
-            paymentMessage.textContent =
-                "Booking information not found.";
-
-            return;
-        }
-
-
-        const bookingData =
-            JSON.parse(savedBooking);
-
-
-        /* CARD PAYMENT */
-
-        if (selectedMethod === "card") {
-
-            const cardName =
-                document.getElementById("cardName")
-                    .value.trim();
-
-            const cardValue =
+            let value =
                 cardNumber.value.replace(
-                    /\s/g,
+                    /\D/g,
                     ""
                 );
 
-            const expiryValue =
-                expiry.value.trim();
+            value =
+                value.substring(0, 16);
 
-            const cvvValue =
-                cvv.value.trim();
+            value =
+                value.replace(
+                    /(.{4})/g,
+                    "$1 "
+                );
+
+            cardNumber.value =
+                value.trim();
+        }
+    );
+}
 
 
-            if (cardName === "") {
+/* EXPIRY */
+
+if (expiry) {
+
+    expiry.addEventListener(
+        "input",
+        function () {
+
+            let value =
+                expiry.value.replace(
+                    /\D/g,
+                    ""
+                );
+
+            value =
+                value.substring(0, 4);
+
+            if (value.length >= 3) {
+
+                value =
+                    value.substring(0, 2) +
+                    "/" +
+                    value.substring(2);
+            }
+
+            expiry.value = value;
+        }
+    );
+}
+
+
+/* CVV */
+
+if (cvv) {
+
+    cvv.addEventListener(
+        "input",
+        function () {
+
+            cvv.value =
+                cvv.value
+                    .replace(/\D/g, "")
+                    .substring(0, 3);
+        }
+    );
+}
+
+
+/* PAYMENT SUBMIT */
+
+if (paymentForm) {
+
+    paymentForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            if (!bookingData) {
 
                 paymentMessage.textContent =
-                    "Please enter card holder name.";
+                    "Booking information not found.";
 
                 return;
             }
 
 
-            if (cardValue.length !== 16) {
+            /* CARD */
 
-                paymentMessage.textContent =
-                    "Please enter a valid 16-digit card number.";
+            if (selectedMethod === "card") {
 
-                return;
+                const cardName =
+                    document
+                        .getElementById("cardName")
+                        .value
+                        .trim();
+
+                const cardValue =
+                    cardNumber.value
+                        .replace(/\s/g, "");
+
+                const expiryValue =
+                    expiry.value.trim();
+
+                const cvvValue =
+                    cvv.value.trim();
+
+
+                if (cardName === "") {
+
+                    paymentMessage.textContent =
+                        "Please enter card holder name.";
+
+                    return;
+                }
+
+
+                if (cardValue.length !== 16) {
+
+                    paymentMessage.textContent =
+                        "Please enter a valid 16-digit card number.";
+
+                    return;
+                }
+
+
+                if (
+                    expiryValue.length !== 5 ||
+                    expiryValue.charAt(2) !== "/"
+                ) {
+
+                    paymentMessage.textContent =
+                        "Please enter a valid expiry date.";
+
+                    return;
+                }
+
+
+                if (cvvValue.length !== 3) {
+
+                    paymentMessage.textContent =
+                        "Please enter a valid 3-digit CVV.";
+
+                    return;
+                }
             }
 
 
-            if (expiryValue.length !== 5) {
+            /* UPI */
 
-                paymentMessage.textContent =
-                    "Please enter a valid expiry date.";
+            if (selectedMethod === "upi") {
 
-                return;
+                const upiValue =
+                    upiId.value.trim();
+
+                if (
+                    upiValue === "" ||
+                    !upiValue.includes("@")
+                ) {
+
+                    paymentMessage.textContent =
+                        "Please enter a valid UPI ID.";
+
+                    return;
+                }
             }
 
 
-            if (cvvValue.length !== 3) {
+            paymentMessage.textContent =
+                "Processing payment...";
+
+
+            try {
+
+                let bookingId = null;
+
+
+                if (
+                    bookingData.bookingIds &&
+                    bookingData.bookingIds.length > 0
+                ) {
+
+                    bookingId =
+                        bookingData.bookingIds[0];
+
+                } else if (
+                    bookingData.backendBookingId
+                ) {
+
+                    bookingId =
+                        bookingData.backendBookingId;
+
+                } else if (
+                    bookingData.bookingId
+                ) {
+
+                    bookingId =
+                        bookingData.bookingId;
+                }
+
+
+                if (!bookingId) {
+
+                    paymentMessage.textContent =
+                        "Booking ID not found.";
+
+                    return;
+                }
+
+
+                const transactionId =
+                    "TXN" + Date.now();
+
+
+                const paymentData = {
+
+                    booking: {
+                        bookingId:
+                            Number(bookingId)
+                    },
+
+                    paymentMethod:
+                        selectedMethod,
+
+                    transactionId:
+                        transactionId,
+
+                    amount:
+                        Number(bookingData.total),
+
+                    paymentStatus:
+                        "SUCCESS"
+                };
+
+
+                const response =
+                    await fetch(
+                        `${API}/payments`,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    paymentData
+                                )
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    const errorText =
+                        await response.text();
+
+                    console.error(
+                        "Payment error:",
+                        errorText
+                    );
+
+                    paymentMessage.textContent =
+                        "Payment could not be saved.";
+
+                    return;
+                }
+
+
+                const payment =
+                    await response.json();
+
+
+                bookingData.payment = {
+
+                    method:
+                        selectedMethod,
+
+                    status:
+                        "Paid",
+
+                    transactionId:
+                        transactionId,
+
+                    paymentId:
+                        payment.paymentId,
+
+                    amount:
+                        Number(bookingData.total),
+
+                    paymentDate:
+                        new Date().toLocaleString(
+                            "en-IN"
+                        )
+                };
+
+
+                bookingData.status =
+                    "Confirmed";
+
+
+                localStorage.setItem(
+                    "bookingData",
+                    JSON.stringify(
+                        bookingData
+                    )
+                );
+
 
                 paymentMessage.textContent =
-                    "Please enter a valid 3-digit CVV.";
+                    "Payment successful!";
 
-                return;
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "confirmation.html";
+
+                    },
+                    1000
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Payment error:",
+                    error
+                );
+
+                paymentMessage.textContent =
+                    "Cannot connect to server.";
             }
 
         }
-
-
-        /* UPI PAYMENT */
-
-        if (selectedMethod === "upi") {
-
-            const upiValue =
-                upiId.value.trim();
-
-
-            if (upiValue === "") {
-
-                paymentMessage.textContent =
-                    "Please enter your UPI ID.";
-
-                return;
-            }
-
-
-            if (!upiValue.includes("@")) {
-
-                paymentMessage.textContent =
-                    "Please enter a valid UPI ID.";
-
-                return;
-            }
-
-        }
-
-
-        /* SAVE PAYMENT */
-
-        bookingData.payment = {
-
-            method:
-                selectedMethod,
-
-            status:
-                "Paid",
-
-            paymentDate:
-                new Date().toLocaleString("en-IN")
-
-        };
-
-
-        bookingData.status =
-            "Confirmed";
-
-
-        localStorage.setItem(
-            "bookingData",
-            JSON.stringify(bookingData)
-        );
-
-
-        /* GO TO CONFIRMATION */
-
-        window.location.href =
-            "confirmation.html";
-
-    }
-);
+    );
+}
