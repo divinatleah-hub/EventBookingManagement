@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - EventBook</title>
+
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="logo">
+            Event<span>Book</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="login.html" class="login-btn">Login</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Login Section -->
+    <main class="login-section">
+
+        <div class="login-container">
+
+            <div class="login-card">
+
+                <div class="login-header">
+
+                    <div class="login-icon">
+                        🔐
+                    </div>
+
+                    <h1>Welcome Back!</h1>
+
+                    <p>
+                        Login to your EventBook account
+                    </p>
+
+                </div>
+
+
+                <form id="loginForm">
+
+                    <!-- Email -->
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="form-group">
+
+                        <div class="password-label">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <a href="#">
+                                Forgot Password?
+                            </a>
+
+                        </div>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Remember Me -->
+                    <div class="remember-me">
+
+                        <label>
+
+                            <input
+                                type="checkbox"
+                                id="remember"
+                            >
+
+                            Remember me
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- Login Button -->
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+                        Login
+                    </button>
+
+
+                    <!-- Message -->
+                    <p
+                        id="loginMessage"
+                        class="login-message"
+                    ></p>
+
+                </form>
+
+
+                <!-- Register -->
+                <div class="register-section">
+
+                    <p>
+                        Don't have an account?
+                        <a href="register.html">
+                            Create an account
+                        </a>
+                    </p>
+
+                </div>
+
+
+                <!-- Back to Home -->
+                <div class="back-home">
+
+                    <a href="index.html">
+                        ← Back to Home
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 EventBook. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="js/login.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,635 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Events - EventBook</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1e293b;
+        }
+
+        .navbar {
+            background: #0f172a;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #60a5fa;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .layout {
+            display: flex;
+            min-height: calc(100vh - 65px);
+        }
+
+        .sidebar {
+            width: 230px;
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            padding: 25px 15px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 20px;
+            padding-left: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #475569;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .main {
+            flex: 1;
+            padding: 35px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 20px;
+        }
+
+        .page-header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #64748b;
+        }
+
+        .create-btn {
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 11px 18px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .table-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .table-header h2 {
+            font-size: 20px;
+        }
+
+        .search-box {
+            width: 230px;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        th {
+            background: #f8fafc;
+            text-align: left;
+            padding: 13px;
+            font-size: 12px;
+            color: #475569;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        td {
+            padding: 13px;
+            font-size: 12px;
+            color: #475569;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .active-status {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .draft-status {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .edit-btn,
+        .delete-btn {
+            border: none;
+            padding: 7px 11px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 11px;
+            margin-right: 4px;
+        }
+
+        .edit-btn {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .delete-btn {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        @media (max-width: 700px) {
+
+            .page-header,
+            .table-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .sidebar {
+                width: 190px;
+            }
+
+            .main {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            Event<span>Book</span>
+        </div>
+
+        <a href="../index.html">
+            Home
+        </a>
+
+    </header>
+
+
+    <div class="layout">
+
+        <aside class="sidebar">
+
+            <h3>Organizer Panel</h3>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="create-event.html">
+                Create Event
+            </a>
+
+            <a
+                href="manage-events.html"
+                class="active">
+                Manage Events
+            </a>
+
+            <a href="../index.html">
+                Back to Home
+            </a>
+
+        </aside>
+
+
+        <main class="main">
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        Manage Events
+                    </h1>
+
+                    <p>
+                        View and manage events created by you.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="create-event.html"
+                    class="create-btn">
+
+                    + Create Event
+
+                </a>
+
+            </div>
+
+
+            <section class="table-card">
+
+                <div class="table-header">
+
+                    <h2>
+                        My Events
+                    </h2>
+
+                    <input
+                        type="text"
+                        id="eventSearch"
+                        class="search-box"
+                        placeholder="Search events...">
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Event ID
+                                </th>
+
+                                <th>
+                                    Event Name
+                                </th>
+
+                                <th>
+                                    Date
+                                </th>
+
+                                <th>
+                                    Venue
+                                </th>
+
+                                <th>
+                                    Tickets
+                                </th>
+
+                                <th>
+                                    Revenue
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="eventsTableBody">
+
+                            <tr>
+
+                                <td>
+                                    E001
+                                </td>
+
+                                <td>
+                                    Summer Music Festival
+                                </td>
+
+                                <td>
+                                    20-08-2026
+                                </td>
+
+                                <td>
+                                    Trichy
+                                </td>
+
+                                <td>
+                                    80
+                                </td>
+
+                                <td>
+                                    ₹40,000
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="status active-status">
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="edit-btn"
+                                        onclick="editEvent('E001')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="delete-btn"
+                                        onclick="deleteEvent(this)">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    E002
+                                </td>
+
+                                <td>
+                                    Tech Conference
+                                </td>
+
+                                <td>
+                                    25-08-2026
+                                </td>
+
+                                <td>
+                                    Chennai
+                                </td>
+
+                                <td>
+                                    48
+                                </td>
+
+                                <td>
+                                    ₹24,000
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="status active-status">
+
+                                        Active
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="edit-btn"
+                                        onclick="editEvent('E002')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="delete-btn"
+                                        onclick="deleteEvent(this)">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    E003
+                                </td>
+
+                                <td>
+                                    College Cultural Event
+                                </td>
+
+                                <td>
+                                    28-08-2026
+                                </td>
+
+                                <td>
+                                    Trichy
+                                </td>
+
+                                <td>
+                                    0
+                                </td>
+
+                                <td>
+                                    ₹0
+                                </td>
+
+                                <td>
+
+                                    <span
+                                        class="status draft-status">
+
+                                        Draft
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="edit-btn"
+                                        onclick="editEvent('E003')">
+
+                                        Edit
+
+                                    </button>
+
+                                    <button
+                                        class="delete-btn"
+                                        onclick="deleteEvent(this)">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script>
+
+        const searchBox =
+            document.getElementById(
+                "eventSearch"
+            );
+
+        const tableBody =
+            document.getElementById(
+                "eventsTableBody"
+            );
+
+
+        searchBox.addEventListener(
+            "input",
+            function () {
+
+                const searchValue =
+                    searchBox.value
+                    .toLowerCase()
+                    .trim();
+
+                const rows =
+                    tableBody
+                    .getElementsByTagName("tr");
+
+
+                for (
+                    let i = 0;
+                    i < rows.length;
+                    i++
+                ) {
+
+                    const text =
+                        rows[i]
+                        .textContent
+                        .toLowerCase();
+
+
+                    rows[i].style.display =
+                        text.includes(searchValue)
+                            ? ""
+                            : "none";
+
+                }
+
+            }
+        );
+
+
+        function editEvent(eventId) {
+
+            alert(
+                "Edit event: " + eventId
+            );
+
+        }
+
+
+        function deleteEvent(button) {
+
+            const confirmation =
+                confirm(
+                    "Are you sure you want to delete this event?"
+                );
+
+
+            if (confirmation) {
+
+                const row =
+                    button.closest("tr");
+
+                if (row) {
+                    row.remove();
+                }
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```

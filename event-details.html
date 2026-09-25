@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Event Details - EventBook</title>
+
+    <link
+        rel="stylesheet"
+        href="css/event-details.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation Bar -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Event<span>Book</span>
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="events.html">
+                Events
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <a href="index.html#contact">
+                Contact
+            </a>
+
+            <a
+                href="login.html"
+                class="login-btn"
+            >
+                Login
+            </a>
+
+            <a
+                href="register.html"
+                class="register-btn"
+            >
+                Register
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- Breadcrumb -->
+
+    <section class="breadcrumb-section">
+
+        <div class="breadcrumb">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <span>›</span>
+
+            <a href="events.html">
+                Events
+            </a>
+
+            <span>›</span>
+
+            <span>
+                Event Details
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Event Details -->
+
+    <main class="details-section">
+
+        <div class="details-container">
+
+
+            <!-- Event Image -->
+
+            <div class="event-main-image">
+
+                <img
+                    id="eventImage"
+                    src=""
+                    alt="Event"
+                >
+
+                <span
+                    id="eventCategory"
+                    class="event-category"
+                >
+                    Event
+                </span>
+
+            </div>
+
+
+
+            <!-- Event Information -->
+
+            <div class="event-information">
+
+
+                <h1 id="eventName">
+                    Loading...
+                </h1>
+
+
+                <p
+                    id="eventIntro"
+                    class="event-intro"
+                >
+                    Loading event details...
+                </p>
+
+
+
+                <!-- Event Info -->
+
+                <div class="info-grid">
+
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+                            📅
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Date
+                            </span>
+
+                            <strong id="eventDate">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+                            🕐
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Time
+                            </span>
+
+                            <strong id="eventTime">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+                            📍
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Venue
+                            </span>
+
+                            <strong id="eventVenue">
+                                -
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="info-box">
+
+                        <div class="info-icon">
+                            🎟️
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Ticket Price
+                            </span>
+
+                            <strong id="eventPrice">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Description -->
+
+                <div class="description">
+
+                    <h2>
+                        About the Event
+                    </h2>
+
+
+                    <p id="eventDescription">
+                        Loading event description...
+                    </p>
+
+
+                    <p>
+                        Enjoy the event and book your preferred
+                        available seat through EventBook.
+                    </p>
+
+                </div>
+
+
+
+                <!-- Availability -->
+
+                <div class="availability-box">
+
+                    <div>
+
+                        <span>
+                            Available Seats
+                        </span>
+
+                        <strong id="availableSeats">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="seat-status">
+                        Seats Available
+                    </div>
+
+                </div>
+
+
+
+                <!-- Booking -->
+
+                <div class="booking-section">
+
+                    <div class="price-section">
+
+                        <span>
+                            Ticket Price
+                        </span>
+
+
+                        <strong id="bookingPrice">
+                            ₹0
+                        </strong>
+
+
+                        <small>
+                            per seat
+                        </small>
+
+                    </div>
+
+
+
+                    <button
+                        id="bookNowButton"
+                        class="book-button"
+                    >
+                        Book Now
+                    </button>
+
+                </div>
+
+
+
+                <!-- Message -->
+
+                <p
+                    id="bookingMessage"
+                    class="booking-message"
+                ></p>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- Event Highlights -->
+
+    <section class="highlights-section">
+
+        <div class="highlights-container">
+
+
+            <div class="highlight-card">
+
+                <div class="highlight-icon">
+                    🎫
+                </div>
+
+                <h3>
+                    Easy Booking
+                </h3>
+
+                <p>
+                    Select your preferred seat and book your ticket
+                    quickly online.
+                </p>
+
+            </div>
+
+
+
+            <div class="highlight-card">
+
+                <div class="highlight-icon">
+                    💺
+                </div>
+
+                <h3>
+                    Seat Selection
+                </h3>
+
+                <p>
+                    Choose your preferred available seat before
+                    completing your booking.
+                </p>
+
+            </div>
+
+
+
+            <div class="highlight-card">
+
+                <div class="highlight-icon">
+                    🔒
+                </div>
+
+                <h3>
+                    Secure Booking
+                </h3>
+
+                <p>
+                    Your booking details are safely managed by
+                    EventBook.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <div class="footer-content">
+
+
+            <div>
+
+                <h3>
+                    EventBook
+                </h3>
+
+                <p>
+                    Event Ticketing & Seat Booking Platform
+                </p>
+
+            </div>
+
+
+
+            <div>
+
+                <h4>
+                    Quick Links
+                </h4>
+
+
+                <a href="index.html">
+                    Home
+                </a>
+
+
+                <a href="events.html">
+                    Events
+                </a>
+
+
+                <a href="login.html">
+                    Login
+                </a>
+
+
+                <a href="register.html">
+                    Register
+                </a>
+
+            </div>
+
+
+
+            <div>
+
+                <h4>
+                    Contact
+                </h4>
+
+
+                <p>
+                    Email: support@eventbook.com
+                </p>
+
+
+                <p>
+                    Phone: +91 98765 43210
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="copyright">
+
+            <p>
+                © 2026 EventBook. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <script>
+
+        const API =
+            "http://localhost:8080/api";
+
+
+        const selectedEventId =
+            localStorage.getItem(
+                "selectedEventId"
+            );
+
+
+
+        const eventImage =
+            document.getElementById(
+                "eventImage"
+            );
+
+
+        const eventName =
+            document.getElementById(
+                "eventName"
+            );
+
+
+        const eventCategory =
+            document.getElementById(
+                "eventCategory"
+            );
+
+
+        const eventIntro =
+            document.getElementById(
+                "eventIntro"
+            );
+
+
+        const eventDate =
+            document.getElementById(
+                "eventDate"
+            );
+
+
+        const eventTime =
+            document.getElementById(
+                "eventTime"
+            );
+
+
+        const eventVenue =
+            document.getElementById(
+                "eventVenue"
+            );
+
+
+        const eventPrice =
+            document.getElementById(
+                "eventPrice"
+            );
+
+
+        const bookingPrice =
+            document.getElementById(
+                "bookingPrice"
+            );
+
+
+        const eventDescription =
+            document.getElementById(
+                "eventDescription"
+            );
+
+
+        const availableSeats =
+            document.getElementById(
+                "availableSeats"
+            );
+
+
+        const bookingMessage =
+            document.getElementById(
+                "bookingMessage"
+            );
+
+
+        const bookNowButton =
+            document.getElementById(
+                "bookNowButton"
+            );
+
+
+
+        /*
+         * Event Images
+         */
+
+        const eventImages = {
+
+            "Summer Music Festival":
+                "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
+
+            "Tech Innovation Conference":
+                "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+
+            "Dance & Cultural Night":
+                "https://images.unsplash.com/photo-1503095396549-807759245b35",
+
+            "Comedy Night":
+                "https://images.unsplash.com/photo-1585699324551-f6c309eedeca",
+
+            "Food & Lifestyle Expo":
+                "https://images.unsplash.com/photo-1556761175-b413da4baf72",
+
+            "Startup & Business Summit":
+                "https://images.unsplash.com/photo-1556761175-5973dc0f32e7",
+
+            "Movie & Entertainment Fest":
+                "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba",
+
+            "New Year Music Celebration":
+                "https://images.unsplash.com/photo-1467810563316-b5476525c0f9"
+
+        };
+
+
+
+        async function loadEvent() {
+
+
+            if (!selectedEventId) {
+
+                eventName.textContent =
+                    "Event not found";
+
+                bookingMessage.textContent =
+                    "Please select an event first.";
+
+                return;
+
+            }
+
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        `${API}/events/${selectedEventId}`
+                    );
+
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Event not found"
+                    );
+
+                }
+
+
+
+                const event =
+                    await response.json();
+
+
+
+                /*
+                 * Event Name
+                 */
+
+                eventName.textContent =
+                    event.eventName || "-";
+
+
+
+                /*
+                 * Event Category
+                 */
+
+                eventCategory.textContent =
+                    event.category || "Event";
+
+
+
+                /*
+                 * Event Image
+                 */
+
+                const imageUrl =
+                    eventImages[
+                        event.eventName
+                    ];
+
+
+
+                if (imageUrl) {
+
+                    eventImage.src =
+                        imageUrl;
+
+                } else {
+
+                    eventImage.src =
+                        "https://images.unsplash.com/photo-1492684223066-81342ee5ff30";
+
+                }
+
+
+
+                eventImage.alt =
+                    event.eventName || "Event";
+
+
+
+                /*
+                 * Event Introduction
+                 */
+
+                eventIntro.textContent =
+                    event.description ||
+                    "Experience an exciting event with EventBook.";
+
+
+
+                /*
+                 * Date
+                 */
+
+                eventDate.textContent =
+                    event.eventDate || "-";
+
+
+
+                /*
+                 * Time
+                 */
+
+                eventTime.textContent =
+                    event.eventTime || "-";
+
+
+
+                /*
+                 * Venue
+                 */
+
+                eventVenue.textContent =
+                    event.venue
+                    ? event.venue.venueName
+                    : "-";
+
+
+
+                /*
+                 * Ticket Price
+                 */
+
+                const price =
+                    Number(
+                        event.ticketPrice
+                    ) || 0;
+
+
+
+                eventPrice.textContent =
+                    "₹" + price;
+
+
+
+                bookingPrice.textContent =
+                    "₹" + price;
+
+
+
+                /*
+                 * Description
+                 */
+
+                eventDescription.textContent =
+                    event.description ||
+                    "Enjoy this exciting event with friends and family.";
+
+
+
+                /*
+                 * Available Seats
+                 */
+
+                loadAvailableSeats(
+
+                    event.venue
+                    ? event.venue.venueId
+                    : null
+
+                );
+
+
+            } catch (error) {
+
+
+                console.error(error);
+
+
+                eventName.textContent =
+                    "Unable to load event";
+
+
+                bookingMessage.textContent =
+                    "Cannot connect to server.";
+
+
+            }
+
+        }
+
+
+
+        async function loadAvailableSeats(
+            venueId
+        ) {
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        `${API}/seats`
+                    );
+
+
+
+                if (!response.ok) {
+
+                    return;
+
+                }
+
+
+
+                const seats =
+                    await response.json();
+
+
+
+                let availableCount =
+                    0;
+
+
+
+                seats.forEach(
+                    function (seat) {
+
+
+                        const sameVenue =
+                            !venueId ||
+                            !seat.venue ||
+                            seat.venue.venueId ===
+                            venueId;
+
+
+
+                        if (
+
+                            sameVenue &&
+
+                            seat.seatStatus ===
+                            "AVAILABLE"
+
+                        ) {
+
+                            availableCount++;
+
+                        }
+
+                    }
+                );
+
+
+
+                availableSeats.textContent =
+                    availableCount;
+
+
+            } catch (error) {
+
+
+                availableSeats.textContent =
+                    "0";
+
+
+            }
+
+        }
+
+
+
+        if (bookNowButton) {
+
+
+            bookNowButton.addEventListener(
+                "click",
+                function () {
+
+
+                    if (!selectedEventId) {
+
+                        bookingMessage.textContent =
+                            "Please select an event first.";
+
+                        return;
+
+                    }
+
+
+
+                    localStorage.setItem(
+                        "selectedEventId",
+                        String(
+                            selectedEventId
+                        )
+                    );
+
+
+
+                    window.location.href =
+                        "seat-selection.html";
+
+
+                }
+            );
+
+        }
+
+
+
+        loadEvent();
+
+    </script>
+
+
+</body>
+
+</html>

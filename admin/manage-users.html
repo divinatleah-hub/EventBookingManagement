@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Users - EventBook</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/admin.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- Navbar -->
+
+    <header class="dashboard-navbar">
+
+        <div class="admin-logo">
+
+            Event<span>Book</span>
+
+        </div>
+
+
+        <div class="dashboard-nav-right">
+
+            <span class="admin-name">
+                Admin
+            </span>
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-btn">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- Layout -->
+
+    <div class="dashboard-layout">
+
+
+        <!-- Sidebar -->
+
+        <aside class="admin-sidebar">
+
+            <h3>
+                Admin Panel
+            </h3>
+
+
+            <a href="dashboard.html">
+
+                Dashboard
+
+            </a>
+
+
+            <a href="manage-events.html">
+
+                Manage Events
+
+            </a>
+
+
+            <a href="manage-seats.html">
+
+                Manage Seats
+
+            </a>
+
+
+            <a href="manage-bookings.html">
+
+                Manage Bookings
+
+            </a>
+
+
+            <a
+                href="manage-users.html"
+                class="active">
+
+                Manage Users
+
+            </a>
+
+        </aside>
+
+
+
+        <!-- Main -->
+
+        <main class="dashboard-main">
+
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        Manage Users
+                    </h1>
+
+                    <p>
+                        View and manage registered users.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- User Statistics -->
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Users
+                        </p>
+
+                        <h2>
+                            25
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Active Users
+                        </p>
+
+                        <h2>
+                            22
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🆕
+                    </div>
+
+                    <div>
+
+                        <p>
+                            New Users
+                        </p>
+
+                        <h2>
+                            5
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🚫
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Blocked Users
+                        </p>
+
+                        <h2>
+                            3
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- User Table -->
+
+            <section class="admin-table-card">
+
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h2>
+                            Registered Users
+                        </h2>
+
+                        <p>
+                            List of users registered in EventBook.
+                        </p>
+
+                    </div>
+
+
+                    <input
+                        type="text"
+                        id="userSearch"
+                        class="search-input"
+                        placeholder="Search users...">
+
+                </div>
+
+
+
+                <div class="table-container">
+
+
+                    <table>
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    User ID
+                                </th>
+
+                                <th>
+                                    Name
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                                <th>
+                                    Phone
+                                </th>
+
+                                <th>
+                                    Registered Date
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+
+                        <tbody id="usersTableBody">
+
+
+                            <tr>
+
+                                <td>
+                                    U001
+                                </td>
+
+                                <td>
+                                    Divina
+                                </td>
+
+                                <td>
+                                    divina@example.com
+                                </td>
+
+                                <td>
+                                    9876543210
+                                </td>
+
+                                <td>
+                                    10-08-2026
+                                </td>
+
+                                <td>
+
+                                    <span class="status confirmed">
+                                        Active
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+
+                                        Edit
+
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+                                    U002
+                                </td>
+
+                                <td>
+                                    Arun Kumar
+                                </td>
+
+                                <td>
+                                    arun@example.com
+                                </td>
+
+                                <td>
+                                    9876543211
+                                </td>
+
+                                <td>
+                                    11-08-2026
+                                </td>
+
+                                <td>
+
+                                    <span class="status confirmed">
+                                        Active
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+
+                                        Edit
+
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+                                    U003
+                                </td>
+
+                                <td>
+                                    Priya
+                                </td>
+
+                                <td>
+                                    priya@example.com
+                                </td>
+
+                                <td>
+                                    9876543212
+                                </td>
+
+                                <td>
+                                    12-08-2026
+                                </td>
+
+                                <td>
+
+                                    <span class="status pending">
+                                        Blocked
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+
+                                        Edit
+
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+                                    U004
+                                </td>
+
+                                <td>
+                                    Karthik
+                                </td>
+
+                                <td>
+                                    karthik@example.com
+                                </td>
+
+                                <td>
+                                    9876543213
+                                </td>
+
+                                <td>
+                                    13-08-2026
+                                </td>
+
+                                <td>
+
+                                    <span class="status confirmed">
+                                        Active
+                                    </span>
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+
+                                        Edit
+
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+
+                                        Delete
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+
+    <script src="../js/admin.js"></script>
+
+</body>
+
+</html>

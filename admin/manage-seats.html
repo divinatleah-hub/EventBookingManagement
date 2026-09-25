@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Seats - EventBook</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <header class="dashboard-navbar">
+
+        <div class="admin-logo">
+            Event<span>Book</span>
+        </div>
+
+        <div class="dashboard-nav-right">
+
+            <span class="admin-name">
+                Admin
+            </span>
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-btn">
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- Layout -->
+
+    <div class="dashboard-layout">
+
+        <!-- Sidebar -->
+
+        <aside class="admin-sidebar">
+
+            <h3>Admin Panel</h3>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a href="manage-events.html">
+                Manage Events
+            </a>
+
+            <a href="manage-seats.html" class="active">
+                Manage Seats
+            </a>
+
+            <a href="manage-bookings.html">
+                Manage Bookings
+            </a>
+
+            <a href="manage-users.html">
+                Manage Users
+            </a>
+
+        </aside>
+
+
+        <!-- Main Content -->
+
+        <main class="dashboard-main">
+
+            <div class="page-header">
+
+                <div>
+
+                    <h1>
+                        Manage Seats
+                    </h1>
+
+                    <p>
+                        Manage event seats and their availability.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="addSeatButton">
+                    + Add Seat
+                </button>
+
+            </div>
+
+
+            <!-- Add Seat Form -->
+
+            <section
+                class="admin-form-card"
+                id="seatFormSection"
+                style="display: none;">
+
+                <h2>
+                    Add New Seat
+                </h2>
+
+                <form id="seatForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="seatEvent">
+                                Event
+                            </label>
+
+                            <select
+                                id="seatEvent"
+                                required>
+
+                                <option value="">
+                                    Select Event
+                                </option>
+
+                                <option value="E001">
+                                    Summer Music Festival
+                                </option>
+
+                                <option value="E002">
+                                    Tech Conference
+                                </option>
+
+                                <option value="E003">
+                                    College Cultural Event
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="seatNumber">
+                                Seat Number
+                            </label>
+
+                            <input
+                                type="text"
+                                id="seatNumber"
+                                placeholder="Example: A101"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="seatType">
+                                Seat Type
+                            </label>
+
+                            <select
+                                id="seatType"
+                                required>
+
+                                <option value="">
+                                    Select Type
+                                </option>
+
+                                <option value="Regular">
+                                    Regular
+                                </option>
+
+                                <option value="Premium">
+                                    Premium
+                                </option>
+
+                                <option value="VIP">
+                                    VIP
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="seatPrice">
+                                Seat Price
+                            </label>
+
+                            <input
+                                type="number"
+                                id="seatPrice"
+                                placeholder="Enter price"
+                                min="0"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="primary-btn">
+                            Save Seat
+                        </button>
+
+                        <button
+                            type="button"
+                            class="secondary-btn"
+                            id="cancelSeatButton">
+                            Cancel
+                        </button>
+
+                    </div>
+
+
+                    <p
+                        id="seatMessage"
+                        class="form-message">
+                    </p>
+
+                </form>
+
+            </section>
+
+
+            <!-- Seat Table -->
+
+            <section class="admin-table-card">
+
+                <div class="table-header">
+
+                    <div>
+
+                        <h2>
+                            Seat List
+                        </h2>
+
+                        <p>
+                            View and manage available seats.
+                        </p>
+
+                    </div>
+
+                    <input
+                        type="text"
+                        id="seatSearch"
+                        class="search-input"
+                        placeholder="Search seats...">
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Seat ID
+                                </th>
+
+                                <th>
+                                    Event
+                                </th>
+
+                                <th>
+                                    Seat Number
+                                </th>
+
+                                <th>
+                                    Type
+                                </th>
+
+                                <th>
+                                    Price
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="seatsTableBody">
+
+                            <tr>
+
+                                <td>
+                                    S001
+                                </td>
+
+                                <td>
+                                    Summer Music Festival
+                                </td>
+
+                                <td>
+                                    A101
+                                </td>
+
+                                <td>
+                                    Regular
+                                </td>
+
+                                <td>
+                                    ₹500
+                                </td>
+
+                                <td>
+                                    <span class="status confirmed">
+                                        Available
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+                                        Delete
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    S002
+                                </td>
+
+                                <td>
+                                    Summer Music Festival
+                                </td>
+
+                                <td>
+                                    A102
+                                </td>
+
+                                <td>
+                                    Premium
+                                </td>
+
+                                <td>
+                                    ₹750
+                                </td>
+
+                                <td>
+                                    <span class="status confirmed">
+                                        Available
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+                                        Delete
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    S003
+                                </td>
+
+                                <td>
+                                    Tech Conference
+                                </td>
+
+                                <td>
+                                    B101
+                                </td>
+
+                                <td>
+                                    VIP
+                                </td>
+
+                                <td>
+                                    ₹1000
+                                </td>
+
+                                <td>
+                                    <span class="status pending">
+                                        Booked
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        type="button"
+                                        class="edit-btn">
+                                        Edit
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="delete-btn">
+                                        Delete
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="../js/admin.js"></script>
+
+</body>
+
+</html>

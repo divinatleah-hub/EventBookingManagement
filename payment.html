@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment - EventBook</title>
+
+    <link rel="stylesheet" href="css/payment.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            Event<span>Book</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="login.html">Login</a>
+            <a href="register.html" class="register-btn">
+                Register
+            </a>
+        </nav>
+
+    </header>
+
+
+    <section class="page-header">
+
+        <p>SECURE PAYMENT</p>
+
+        <h1>Complete Payment</h1>
+
+        <span>
+            Make your payment to confirm your booking.
+        </span>
+
+    </section>
+
+
+    <main class="payment-section">
+
+        <div class="payment-container">
+
+
+            <!-- Payment Form -->
+
+            <div class="payment-card">
+
+                <h2>Payment Method</h2>
+
+                <p class="description">
+                    Select your preferred payment method.
+                </p>
+
+
+                <div class="payment-methods">
+
+                    <button
+                        type="button"
+                        class="method active"
+                        data-method="card"
+                    >
+                        💳 Card
+                    </button>
+
+                    <button
+                        type="button"
+                        class="method"
+                        data-method="upi"
+                    >
+                        📱 UPI
+                    </button>
+
+                </div>
+
+
+                <!-- Card Form -->
+
+                <form id="paymentForm">
+
+                    <div id="cardSection">
+
+                        <div class="form-group">
+
+                            <label for="cardName">
+                                Card Holder Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cardName"
+                                placeholder="Enter card holder name"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="cardNumber">
+                                Card Number
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cardNumber"
+                                placeholder="1234 5678 9012 3456"
+                                maxlength="19"
+                            >
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label for="expiry">
+                                    Expiry Date
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="expiry"
+                                    placeholder="MM/YY"
+                                    maxlength="5"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="cvv">
+                                    CVV
+                                </label>
+
+                                <input
+                                    type="password"
+                                    id="cvv"
+                                    placeholder="123"
+                                    maxlength="3"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- UPI Form -->
+
+                    <div
+                        id="upiSection"
+                        class="hidden"
+                    >
+
+                        <div class="form-group">
+
+                            <label for="upiId">
+                                UPI ID
+                            </label>
+
+                            <input
+                                type="text"
+                                id="upiId"
+                                placeholder="example@upi"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <p
+                        id="paymentMessage"
+                        class="payment-message"
+                    ></p>
+
+
+                    <button
+                        type="submit"
+                        class="pay-button"
+                    >
+                        Pay Now
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- Order Summary -->
+
+            <aside class="summary-card">
+
+                <h2>Order Summary</h2>
+
+
+                <div class="event-box">
+
+                    <div class="event-icon">
+                        🎵
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Summer Music Festival
+                        </h3>
+
+                        <p>
+                            Event Ticket
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <span>
+                        Date
+                    </span>
+
+                    <strong>
+                        20 August 2026
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <span>
+                        Venue
+                    </span>
+
+                    <strong>
+                        Trichy Convention Hall
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <span>
+                        Selected Seats
+                    </span>
+
+                    <strong id="selectedSeats">
+                        None
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <span>
+                        Number of Seats
+                    </span>
+
+                    <strong id="seatCount">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="price-row">
+
+                    <span>
+                        Ticket Price
+                    </span>
+
+                    <strong>
+                        ₹500
+                    </strong>
+
+                </div>
+
+
+                <div class="total-row">
+
+                    <span>
+                        Total Amount
+                    </span>
+
+                    <strong id="totalAmount">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <div class="secure-box">
+                    🔒 Secure Payment
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+
+                <h3>EventBook</h3>
+
+                <p>
+                    Event Ticketing & Seat Booking Platform
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>Quick Links</h4>
+
+                <a href="index.html">Home</a>
+
+                <a href="events.html">Events</a>
+
+                <a href="login.html">Login</a>
+
+                <a href="register.html">Register</a>
+
+            </div>
+
+
+            <div>
+
+                <h4>Contact</h4>
+
+                <p>
+                    Email: support@eventbook.com
+                </p>
+
+                <p>
+                    Phone: +91 98765 43210
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <p>
+                © 2026 EventBook. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/payment.js"></script>
+
+</body>
+</html>

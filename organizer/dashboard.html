@@ -1,0 +1,286 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Organizer Dashboard - EventBook</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1e293b;
+        }
+
+        .navbar {
+            background: #0f172a;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #60a5fa;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 9px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .layout {
+            display: flex;
+            min-height: calc(100vh - 65px);
+        }
+
+        .sidebar {
+            width: 230px;
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            padding: 25px 15px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 20px;
+            padding-left: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #475569;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .main {
+            flex: 1;
+            padding: 35px;
+        }
+
+        .main h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card p {
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        .card h2 {
+            font-size: 28px;
+        }
+
+        .content-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .content-card h2 {
+            margin-bottom: 15px;
+        }
+
+        .create-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 11px 18px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        .create-btn:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 800px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                width: 190px;
+            }
+
+            .main {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            Event<span>Book</span>
+        </div>
+
+        <div class="navbar-right">
+            <span>Organizer</span>
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+                Logout
+            </button>
+        </div>
+
+    </header>
+
+
+    <div class="layout">
+
+        <aside class="sidebar">
+
+            <h3>Organizer Panel</h3>
+
+            <a
+                href="dashboard.html"
+                class="active">
+                Dashboard
+            </a>
+
+            <a href="create-event.html">
+                Create Event
+            </a>
+
+            <a href="manage-events.html">
+                Manage Events
+            </a>
+
+            <a href="../index.html">
+                Back to Home
+            </a>
+
+        </aside>
+
+
+        <main class="main">
+
+            <h1>
+                Organizer Dashboard
+            </h1>
+
+            <p class="subtitle">
+                Manage your events and track your bookings.
+            </p>
+
+
+            <section class="stats">
+
+                <div class="card">
+                    <p>Total Events</p>
+                    <h2>5</h2>
+                </div>
+
+                <div class="card">
+                    <p>Total Bookings</p>
+                    <h2>128</h2>
+                </div>
+
+                <div class="card">
+                    <p>Total Revenue</p>
+                    <h2>₹64,000</h2>
+                </div>
+
+            </section>
+
+
+            <section class="content-card">
+
+                <h2>
+                    Quick Actions
+                </h2>
+
+                <p>
+                    Create a new event or manage your existing events.
+                </p>
+
+                <a
+                    href="create-event.html"
+                    class="create-btn">
+                    Create New Event
+                </a>
+
+                <a
+                    href="manage-events.html"
+                    class="create-btn">
+                    Manage Events
+                </a>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script>
+        function logout() {
+            alert("Logged out successfully.");
+            window.location.href = "../index.html";
+        }
+    </script>
+
+</body>
+
+</html>
+```
