@@ -1,0 +1,448 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Event - EventBook</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1e293b;
+        }
+
+        .navbar {
+            background: #0f172a;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #60a5fa;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .layout {
+            display: flex;
+            min-height: calc(100vh - 65px);
+        }
+
+        .sidebar {
+            width: 230px;
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            padding: 25px 15px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 20px;
+            padding-left: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #475569;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .main {
+            flex: 1;
+            padding: 35px;
+        }
+
+        .main h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .form-card {
+            max-width: 750px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .reset-btn {
+            background: #e2e8f0;
+            color: #334155;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 700px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                width: 190px;
+            }
+
+            .main {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            Event<span>Book</span>
+        </div>
+
+        <a href="../index.html">
+            Home
+        </a>
+
+    </header>
+
+
+    <div class="layout">
+
+        <aside class="sidebar">
+
+            <h3>Organizer Panel</h3>
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+            <a
+                href="create-event.html"
+                class="active">
+                Create Event
+            </a>
+
+            <a href="manage-events.html">
+                Manage Events
+            </a>
+
+            <a href="../index.html">
+                Back to Home
+            </a>
+
+        </aside>
+
+
+        <main class="main">
+
+            <h1>
+                Create Event
+            </h1>
+
+            <p class="subtitle">
+                Add a new event to EventBook.
+            </p>
+
+
+            <section class="form-card">
+
+                <form id="createEventForm">
+
+                    <div class="form-group">
+
+                        <label for="eventName">
+                            Event Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventName"
+                            placeholder="Enter event name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="category">
+                            Event Category
+                        </label>
+
+                        <select
+                            id="category"
+                            required>
+
+                            <option value="">
+                                Select category
+                            </option>
+
+                            <option value="Music">
+                                Music
+                            </option>
+
+                            <option value="Technology">
+                                Technology
+                            </option>
+
+                            <option value="Sports">
+                                Sports
+                            </option>
+
+                            <option value="Cultural">
+                                Cultural
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            placeholder="Enter event description"
+                            required></textarea>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="eventDate">
+                                Event Date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="eventDate"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="eventTime">
+                                Event Time
+                            </label>
+
+                            <input
+                                type="time"
+                                id="eventTime"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="venue">
+                            Venue
+                        </label>
+
+                        <input
+                            type="text"
+                            id="venue"
+                            placeholder="Enter venue"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="ticketPrice">
+                                Ticket Price (₹)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="ticketPrice"
+                                min="0"
+                                placeholder="Enter ticket price"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="totalSeats">
+                                Total Seats
+                            </label>
+
+                            <input
+                                type="number"
+                                id="totalSeats"
+                                min="1"
+                                placeholder="Enter total seats"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="submit-btn">
+                        Create Event
+                    </button>
+
+
+                    <button
+                        type="reset"
+                        class="reset-btn">
+                        Clear
+                    </button>
+
+
+                    <p id="message"></p>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script>
+
+        const form =
+            document.getElementById(
+                "createEventForm"
+            );
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+                message.textContent =
+                    "Event created successfully!";
+
+                message.style.color =
+                    "#16a34a";
+
+                form.reset();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
+```

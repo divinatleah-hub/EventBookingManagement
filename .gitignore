@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+target/
+node_modules/
+.vscode/

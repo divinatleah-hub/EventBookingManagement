@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const seats = document.querySelectorAll(".seat");
+    const API = "http://localhost:8080/api";
+
+    const seats =
+        document.querySelectorAll(".seat");
+
     const selectedSeatsInput =
         document.getElementById("selectedSeats");
 
@@ -10,9 +14,75 @@ document.addEventListener("DOMContentLoaded", function () {
     const proceedButton =
         document.getElementById("proceedButton");
 
+    const seatMessage =
+        document.getElementById("seatMessage");
+
+    const eventId =
+        localStorage.getItem("selectedEventId");
+
     let selectedSeats = [];
 
-    const seatPrice = 500;
+    let seatPrice = 500;
+
+
+    async function loadSeats() {
+
+        if (!eventId) {
+            return;
+        }
+
+        try {
+
+            const response =
+                await fetch(
+                    `${API}/seats`
+                );
+
+            if (!response.ok) {
+                return;
+            }
+
+            const allSeats =
+                await response.json();
+
+            seats.forEach(function (seat) {
+
+                const seatNumber =
+                    seat.getAttribute("data-seat");
+
+                const backendSeat =
+                    allSeats.find(function (item) {
+                        return item.seatNumber === seatNumber;
+                    });
+
+                if (backendSeat) {
+
+                    seat.dataset.seatId =
+                        backendSeat.seatId;
+
+                    if (
+                        backendSeat.seatStatus ===
+                        "BOOKED"
+                    ) {
+
+                        seat.classList.add("booked");
+                        seat.classList.remove("available");
+
+                    }
+
+                }
+
+            });
+
+        } catch (error) {
+
+            console.log(
+                "Unable to load seat data."
+            );
+
+        }
+
+    }
 
 
     seats.forEach(function (seat) {
@@ -82,7 +152,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         const amount =
-            selectedSeats.length * seatPrice;
+            selectedSeats.length *
+            seatPrice;
 
 
         if (totalAmount) {
@@ -113,13 +184,48 @@ document.addEventListener("DOMContentLoaded", function () {
                     selectedSeats.length === 0
                 ) {
 
-                    alert(
-                        "Please select at least one seat."
-                    );
+                    if (seatMessage) {
+
+                        seatMessage.textContent =
+                            "Please select at least one seat.";
+
+                    } else {
+
+                        alert(
+                            "Please select at least one seat."
+                        );
+
+                    }
 
                     return;
 
                 }
+
+
+                const bookingData = {
+
+                    eventId:
+                        eventId,
+
+                    seats:
+                        selectedSeats,
+
+                    price:
+                        seatPrice,
+
+                    total:
+                        selectedSeats.length *
+                        seatPrice
+
+                };
+
+
+                localStorage.setItem(
+                    "bookingData",
+                    JSON.stringify(
+                        bookingData
+                    )
+                );
 
 
                 localStorage.setItem(
@@ -145,6 +251,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+
+    loadSeats();
 
     updateSeatDetails();
 

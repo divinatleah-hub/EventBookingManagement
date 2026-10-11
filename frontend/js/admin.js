@@ -1,115 +1,93 @@
-/* =========================
-   ADMIN LOGIN
-========================= */
+const API = "http://localhost:8080/api";
 
-const adminLoginForm =
-    document.getElementById("adminLoginForm");
-
-const adminLoginMessage =
-    document.getElementById("adminLoginMessage");
-
+const adminLoginForm = document.getElementById("adminLoginForm");
+const adminLoginMessage = document.getElementById("adminLoginMessage");
 
 if (adminLoginForm) {
 
-    adminLoginForm.addEventListener(
-        "submit",
-        function (event) {
+    adminLoginForm.addEventListener("submit", async function (event) {
 
-            event.preventDefault();
+        event.preventDefault();
 
-            const email =
-                document.getElementById("adminEmail")
-                .value
-                .trim();
+        const email =
+            document.getElementById("adminEmail").value.trim();
 
-            const password =
-                document.getElementById("adminPassword")
-                .value;
+        const password =
+            document.getElementById("adminPassword").value;
 
-            const correctEmail =
-                "admin@eventbook.com";
+        if (!email || !password) {
+            adminLoginMessage.textContent =
+                "Please enter your email and password.";
+            return;
+        }
 
-            const correctPassword =
-                "admin123";
+        try {
 
+            const response = await fetch(
+                `${API}/admins/email/${encodeURIComponent(email)}`
+            );
 
-            if (
-                email === correctEmail &&
-                password === correctPassword
-            ) {
-
-                localStorage.setItem(
-                    "adminLoggedIn",
-                    "true"
-                );
-
-                localStorage.setItem(
-                    "adminEmail",
-                    email
-                );
-
-
-                if (adminLoginMessage) {
-
-                    adminLoginMessage.textContent =
-                        "Login successful!";
-
-                    adminLoginMessage.style.color =
-                        "#16a34a";
-                }
-
-
-                setTimeout(
-                    function () {
-
-                        window.location.href =
-                            "dashboard.html";
-
-                    },
-                    800
-                );
-
-
-            } else {
-
-                if (adminLoginMessage) {
-
-                    adminLoginMessage.textContent =
-                        "Invalid admin email or password.";
-
-                    adminLoginMessage.style.color =
-                        "#dc2626";
-                }
-
+            if (!response.ok) {
+                adminLoginMessage.textContent =
+                    "Invalid admin email or password.";
+                return;
             }
 
-        }
-    );
+            const admin = await response.json();
 
+            if (admin.password !== password) {
+                adminLoginMessage.textContent =
+                    "Invalid admin email or password.";
+                return;
+            }
+
+            localStorage.setItem(
+                "adminLoggedIn",
+                "true"
+            );
+
+            localStorage.setItem(
+                "adminEmail",
+                admin.email
+            );
+
+            localStorage.setItem(
+                "adminData",
+                JSON.stringify(admin)
+            );
+
+            adminLoginMessage.textContent =
+                "Login successful!";
+
+            adminLoginMessage.style.color =
+                "#16a34a";
+
+            setTimeout(function () {
+                window.location.href =
+                    "dashboard.html";
+            }, 800);
+
+        } catch (error) {
+
+            adminLoginMessage.textContent =
+                "Cannot connect to server. Please start the backend.";
+        }
+    });
 }
 
 
-/* =========================
-   ADMIN AUTHENTICATION
-========================= */
-
 const logoutButton =
     document.getElementById("logoutButton");
-
 
 if (logoutButton) {
 
     const adminLoggedIn =
         localStorage.getItem("adminLoggedIn");
 
-
     if (adminLoggedIn !== "true") {
-
         window.location.href =
             "admin-login.html";
-
     }
-
 
     logoutButton.addEventListener(
         "click",
@@ -123,18 +101,16 @@ if (logoutButton) {
                 "adminEmail"
             );
 
+            localStorage.removeItem(
+                "adminData"
+            );
+
             window.location.href =
                 "admin-login.html";
-
         }
     );
-
 }
 
-
-/* =========================
-   MANAGE EVENTS
-========================= */
 
 const addEventButton =
     document.getElementById("addEventButton");
@@ -152,8 +128,6 @@ const eventMessage =
     document.getElementById("eventMessage");
 
 
-/* Show Event Form */
-
 if (addEventButton) {
 
     addEventButton.addEventListener(
@@ -161,22 +135,16 @@ if (addEventButton) {
         function () {
 
             if (eventFormSection) {
-
                 eventFormSection.style.display =
                     "block";
-
             }
 
             addEventButton.style.display =
                 "none";
-
         }
     );
-
 }
 
-
-/* Cancel Event Form */
 
 if (cancelEventButton) {
 
@@ -185,100 +153,52 @@ if (cancelEventButton) {
         function () {
 
             if (eventForm) {
-
                 eventForm.reset();
-
             }
 
             if (eventFormSection) {
-
                 eventFormSection.style.display =
                     "none";
-
             }
 
             if (addEventButton) {
-
                 addEventButton.style.display =
                     "block";
-
             }
 
             if (eventMessage) {
-
-                eventMessage.textContent =
-                    "";
-
+                eventMessage.textContent = "";
             }
-
         }
     );
-
 }
 
-
-/* Add Event */
 
 if (eventForm) {
 
     eventForm.addEventListener(
         "submit",
-        function (event) {
+        async function (event) {
 
             event.preventDefault();
 
-
-            const eventNameElement =
-                document.getElementById("eventName");
-
-            const eventDateElement =
-                document.getElementById("eventDate");
-
-            const eventTimeElement =
-                document.getElementById("eventTime");
-
-            const eventVenueElement =
-                document.getElementById("eventVenue");
-
-            const eventPriceElement =
-                document.getElementById("eventPrice");
-
-            const eventCategoryElement =
-                document.getElementById("eventCategory");
-
-
-            if (
-                !eventNameElement ||
-                !eventDateElement ||
-                !eventTimeElement ||
-                !eventVenueElement ||
-                !eventPriceElement ||
-                !eventCategoryElement
-            ) {
-
-                return;
-
-            }
-
-
             const eventName =
-                eventNameElement.value.trim();
+                document.getElementById("eventName").value.trim();
 
             const eventDate =
-                eventDateElement.value;
+                document.getElementById("eventDate").value;
 
             const eventTime =
-                eventTimeElement.value;
+                document.getElementById("eventTime").value;
 
             const eventVenue =
-                eventVenueElement.value.trim();
+                document.getElementById("eventVenue").value.trim();
 
             const eventPrice =
-                eventPriceElement.value;
+                document.getElementById("eventPrice").value;
 
             const eventCategory =
-                eventCategoryElement.value;
-
+                document.getElementById("eventCategory").value;
 
             if (
                 !eventName ||
@@ -289,69 +209,28 @@ if (eventForm) {
                 !eventCategory
             ) {
 
-                if (eventMessage) {
-
-                    eventMessage.textContent =
-                        "Please fill all the fields.";
-
-                    eventMessage.style.color =
-                        "#dc2626";
-
-                }
-
-                return;
-
-            }
-
-
-            if (eventMessage) {
-
                 eventMessage.textContent =
-                    "Event added successfully!";
+                    "Please fill all the fields.";
 
                 eventMessage.style.color =
-                    "#16a34a";
+                    "#dc2626";
 
+                return;
             }
 
+            eventMessage.textContent =
+                "Event form validated.";
 
-            setTimeout(
-                function () {
+            eventMessage.style.color =
+                "#16a34a";
 
-                    eventForm.reset();
-
-                    if (eventFormSection) {
-
-                        eventFormSection.style.display =
-                            "none";
-
-                    }
-
-                    if (addEventButton) {
-
-                        addEventButton.style.display =
-                            "block";
-
-                    }
-
-                    if (eventMessage) {
-
-                        eventMessage.textContent =
-                            "";
-
-                    }
-
-                },
-                1000
+            alert(
+                "Event creation needs a venue ID and organizer ID from the backend."
             );
-
         }
     );
-
 }
 
-
-/* Event Search */
 
 const eventSearch =
     document.getElementById("eventSearch");
@@ -360,10 +239,58 @@ const eventsTableBody =
     document.getElementById("eventsTableBody");
 
 
-if (
-    eventSearch &&
-    eventsTableBody
-) {
+async function loadEvents() {
+
+    if (!eventsTableBody) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(`${API}/events`);
+
+        if (!response.ok) {
+            return;
+        }
+
+        const events =
+            await response.json();
+
+        eventsTableBody.innerHTML = "";
+
+        events.forEach(function (event) {
+
+            const row =
+                document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${event.eventId}</td>
+                <td>${event.eventName}</td>
+                <td>${event.category || ""}</td>
+                <td>${event.eventDate || ""}</td>
+                <td>₹${event.ticketPrice || 0}</td>
+                <td>
+                    <button class="delete-btn"
+                        data-id="${event.eventId}">
+                        Delete
+                    </button>
+                </td>
+            `;
+
+            eventsTableBody.appendChild(row);
+        });
+
+        addDeleteEvents();
+
+    } catch (error) {
+
+        console.log("Unable to load events.");
+    }
+}
+
+
+if (eventSearch && eventsTableBody) {
 
     eventSearch.addEventListener(
         "input",
@@ -371,53 +298,86 @@ if (
 
             const searchValue =
                 eventSearch.value
-                .toLowerCase()
-                .trim();
+                    .toLowerCase()
+                    .trim();
 
             const rows =
                 eventsTableBody
-                .getElementsByTagName("tr");
+                    .getElementsByTagName("tr");
 
-
-            for (
-                let i = 0;
-                i < rows.length;
-                i++
-            ) {
+            for (let i = 0; i < rows.length; i++) {
 
                 const rowText =
                     rows[i]
-                    .textContent
-                    .toLowerCase();
+                        .textContent
+                        .toLowerCase();
 
-
-                if (
-                    rowText.includes(
-                        searchValue
-                    )
-                ) {
-
-                    rows[i].style.display =
-                        "";
-
-                } else {
-
-                    rows[i].style.display =
-                        "none";
-
-                }
-
+                rows[i].style.display =
+                    rowText.includes(searchValue)
+                        ? ""
+                        : "none";
             }
-
         }
     );
-
 }
 
 
-/* =========================
-   MANAGE SEATS
-========================= */
+function addDeleteEvents() {
+
+    const deleteButtons =
+        document.querySelectorAll(
+            ".delete-btn"
+        );
+
+    deleteButtons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                async function () {
+
+                    const confirmDelete =
+                        confirm(
+                            "Are you sure you want to delete this event?"
+                        );
+
+                    if (!confirmDelete) {
+                        return;
+                    }
+
+                    const id =
+                        button.getAttribute("data-id");
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                `${API}/events/${id}`,
+                                {
+                                    method: "DELETE"
+                                }
+                            );
+
+                        if (response.ok) {
+                            button.closest("tr").remove();
+                        } else {
+                            alert(
+                                "Event could not be deleted."
+                            );
+                        }
+
+                    } catch (error) {
+
+                        alert(
+                            "Cannot connect to server."
+                        );
+                    }
+                }
+            );
+        }
+    );
+}
+
 
 const addSeatButton =
     document.getElementById("addSeatButton");
@@ -435,8 +395,6 @@ const seatMessage =
     document.getElementById("seatMessage");
 
 
-/* Show Seat Form */
-
 if (addSeatButton) {
 
     addSeatButton.addEventListener(
@@ -444,22 +402,16 @@ if (addSeatButton) {
         function () {
 
             if (seatFormSection) {
-
                 seatFormSection.style.display =
                     "block";
-
             }
 
             addSeatButton.style.display =
                 "none";
-
         }
     );
-
 }
 
-
-/* Cancel Seat Form */
 
 if (cancelSeatButton) {
 
@@ -468,144 +420,72 @@ if (cancelSeatButton) {
         function () {
 
             if (seatForm) {
-
                 seatForm.reset();
-
             }
 
             if (seatFormSection) {
-
                 seatFormSection.style.display =
                     "none";
-
             }
 
             if (addSeatButton) {
-
                 addSeatButton.style.display =
                     "block";
-
             }
 
             if (seatMessage) {
-
-                seatMessage.textContent =
-                    "";
-
+                seatMessage.textContent = "";
             }
-
         }
     );
-
 }
 
-
-/* Add Seat */
 
 if (seatForm) {
 
     seatForm.addEventListener(
         "submit",
-        function (event) {
+        async function (event) {
 
             event.preventDefault();
 
-
-            const seatEvent =
-                document.getElementById("seatEvent");
-
             const seatNumber =
-                document.getElementById("seatNumber");
+                document.getElementById("seatNumber").value.trim();
 
             const seatType =
-                document.getElementById("seatType");
+                document.getElementById("seatType").value;
 
             const seatPrice =
-                document.getElementById("seatPrice");
-
+                document.getElementById("seatPrice").value;
 
             if (
-                !seatEvent ||
                 !seatNumber ||
                 !seatType ||
                 !seatPrice
             ) {
 
-                return;
-
-            }
-
-
-            if (
-                !seatEvent.value ||
-                !seatNumber.value.trim() ||
-                !seatType.value ||
-                !seatPrice.value
-            ) {
-
-                if (seatMessage) {
-
-                    seatMessage.textContent =
-                        "Please fill all the fields.";
-
-                    seatMessage.style.color =
-                        "#dc2626";
-
-                }
-
-                return;
-
-            }
-
-
-            if (seatMessage) {
-
                 seatMessage.textContent =
-                    "Seat added successfully!";
+                    "Please fill all the fields.";
 
                 seatMessage.style.color =
-                    "#16a34a";
+                    "#dc2626";
 
+                return;
             }
 
+            seatMessage.textContent =
+                "Seat form validated.";
 
-            setTimeout(
-                function () {
+            seatMessage.style.color =
+                "#16a34a";
 
-                    seatForm.reset();
-
-                    if (seatFormSection) {
-
-                        seatFormSection.style.display =
-                            "none";
-
-                    }
-
-                    if (addSeatButton) {
-
-                        addSeatButton.style.display =
-                            "block";
-
-                    }
-
-                    if (seatMessage) {
-
-                        seatMessage.textContent =
-                            "";
-
-                    }
-
-                },
-                1000
+            alert(
+                "Seat creation needs a venue ID from the backend."
             );
-
         }
     );
-
 }
 
-
-/* Seat Search */
 
 const seatSearch =
     document.getElementById("seatSearch");
@@ -614,10 +494,56 @@ const seatsTableBody =
     document.getElementById("seatsTableBody");
 
 
-if (
-    seatSearch &&
-    seatsTableBody
-) {
+async function loadSeats() {
+
+    if (!seatsTableBody) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(`${API}/seats`);
+
+        if (!response.ok) {
+            return;
+        }
+
+        const seats =
+            await response.json();
+
+        seatsTableBody.innerHTML = "";
+
+        seats.forEach(function (seat) {
+
+            const row =
+                document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${seat.seatId}</td>
+                <td>${seat.seatNumber}</td>
+                <td>${seat.seatStatus}</td>
+                <td>
+                    <button class="delete-seat-btn"
+                        data-id="${seat.seatId}">
+                        Delete
+                    </button>
+                </td>
+            `;
+
+            seatsTableBody.appendChild(row);
+        });
+
+        addDeleteSeats();
+
+    } catch (error) {
+
+        console.log("Unable to load seats.");
+    }
+}
+
+
+if (seatSearch && seatsTableBody) {
 
     seatSearch.addEventListener(
         "input",
@@ -625,53 +551,86 @@ if (
 
             const searchValue =
                 seatSearch.value
-                .toLowerCase()
-                .trim();
+                    .toLowerCase()
+                    .trim();
 
             const rows =
                 seatsTableBody
-                .getElementsByTagName("tr");
+                    .getElementsByTagName("tr");
 
-
-            for (
-                let i = 0;
-                i < rows.length;
-                i++
-            ) {
+            for (let i = 0; i < rows.length; i++) {
 
                 const rowText =
                     rows[i]
-                    .textContent
-                    .toLowerCase();
+                        .textContent
+                        .toLowerCase();
 
-
-                if (
-                    rowText.includes(
-                        searchValue
-                    )
-                ) {
-
-                    rows[i].style.display =
-                        "";
-
-                } else {
-
-                    rows[i].style.display =
-                        "none";
-
-                }
-
+                rows[i].style.display =
+                    rowText.includes(searchValue)
+                        ? ""
+                        : "none";
             }
-
         }
     );
-
 }
 
 
-/* =========================
-   MANAGE USERS
-========================= */
+function addDeleteSeats() {
+
+    const deleteButtons =
+        document.querySelectorAll(
+            ".delete-seat-btn"
+        );
+
+    deleteButtons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                async function () {
+
+                    const confirmDelete =
+                        confirm(
+                            "Are you sure you want to delete this seat?"
+                        );
+
+                    if (!confirmDelete) {
+                        return;
+                    }
+
+                    const id =
+                        button.getAttribute("data-id");
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                `${API}/seats/${id}`,
+                                {
+                                    method: "DELETE"
+                                }
+                            );
+
+                        if (response.ok) {
+                            button.closest("tr").remove();
+                        } else {
+                            alert(
+                                "Seat could not be deleted."
+                            );
+                        }
+
+                    } catch (error) {
+
+                        alert(
+                            "Cannot connect to server."
+                        );
+                    }
+                }
+            );
+        }
+    );
+}
+
 
 const userSearch =
     document.getElementById("userSearch");
@@ -680,12 +639,58 @@ const usersTableBody =
     document.getElementById("usersTableBody");
 
 
-/* User Search */
+async function loadUsers() {
 
-if (
-    userSearch &&
-    usersTableBody
-) {
+    if (!usersTableBody) {
+        return;
+    }
+
+    try {
+
+        const response =
+            await fetch(`${API}/users`);
+
+        if (!response.ok) {
+            return;
+        }
+
+        const users =
+            await response.json();
+
+        usersTableBody.innerHTML = "";
+
+        users.forEach(function (user) {
+
+            const row =
+                document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${user.userId}</td>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td>${user.phone || ""}</td>
+                <td>${user.role || ""}</td>
+                <td>
+                    <button class="delete-user-btn"
+                        data-id="${user.userId}">
+                        Delete
+                    </button>
+                </td>
+            `;
+
+            usersTableBody.appendChild(row);
+        });
+
+        addDeleteUsers();
+
+    } catch (error) {
+
+        console.log("Unable to load users.");
+    }
+}
+
+
+if (userSearch && usersTableBody) {
 
     userSearch.addEventListener(
         "input",
@@ -693,117 +698,87 @@ if (
 
             const searchValue =
                 userSearch.value
-                .toLowerCase()
-                .trim();
+                    .toLowerCase()
+                    .trim();
 
             const rows =
                 usersTableBody
-                .getElementsByTagName("tr");
+                    .getElementsByTagName("tr");
 
-
-            for (
-                let i = 0;
-                i < rows.length;
-                i++
-            ) {
+            for (let i = 0; i < rows.length; i++) {
 
                 const rowText =
                     rows[i]
-                    .textContent
-                    .toLowerCase();
+                        .textContent
+                        .toLowerCase();
 
-
-                if (
-                    rowText.includes(
-                        searchValue
-                    )
-                ) {
-
-                    rows[i].style.display =
-                        "";
-
-                } else {
-
-                    rows[i].style.display =
-                        "none";
-
-                }
-
+                rows[i].style.display =
+                    rowText.includes(searchValue)
+                        ? ""
+                        : "none";
             }
-
         }
     );
-
 }
 
 
-/* =========================
-   DELETE BUTTONS
-========================= */
+function addDeleteUsers() {
 
-const deleteButtons =
-    document.querySelectorAll(
-        ".delete-btn"
-    );
+    const deleteButtons =
+        document.querySelectorAll(
+            ".delete-user-btn"
+        );
 
+    deleteButtons.forEach(
+        function (button) {
 
-deleteButtons.forEach(
-    function (button) {
+            button.addEventListener(
+                "click",
+                async function () {
 
-        button.addEventListener(
-            "click",
-            function () {
+                    const confirmDelete =
+                        confirm(
+                            "Are you sure you want to delete this user?"
+                        );
 
-                const confirmDelete =
-                    confirm(
-                        "Are you sure you want to delete this item?"
-                    );
-
-
-                if (confirmDelete) {
-
-                    const row =
-                        button.closest("tr");
-
-
-                    if (row) {
-
-                        row.remove();
-
+                    if (!confirmDelete) {
+                        return;
                     }
 
+                    const id =
+                        button.getAttribute("data-id");
+
+                    try {
+
+                        const response =
+                            await fetch(
+                                `${API}/users/${id}`,
+                                {
+                                    method: "DELETE"
+                                }
+                            );
+
+                        if (response.ok) {
+                            button.closest("tr").remove();
+                        } else {
+                            alert(
+                                "User could not be deleted."
+                            );
+                        }
+
+                    } catch (error) {
+
+                        alert(
+                            "Cannot connect to server."
+                        );
+                    }
                 }
-
-            }
-        );
-
-    }
-);
-
-
-/* =========================
-   EDIT BUTTONS
-========================= */
-
-const editButtons =
-    document.querySelectorAll(
-        ".edit-btn"
+            );
+        }
     );
+}
 
 
-editButtons.forEach(
-    function (button) {
-
-        button.addEventListener(
-            "click",
-            function () {
-
-                alert(
-                    "Edit functionality will be connected to the backend later."
-                );
-
-            }
-        );
-
-    }
-);
+loadEvents();
+loadSeats();
+loadUsers();

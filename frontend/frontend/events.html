@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Events - EventBook</title>
+
+    <link rel="stylesheet" href="css/events.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+
+        <div class="logo">
+            Event<span>Book</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="events.html" class="active">Events</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#contact">Contact</a>
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Page Header -->
+    <section class="page-header">
+
+        <div class="page-header-content">
+
+            <p>DISCOVER & BOOK</p>
+
+            <h1>Upcoming Events</h1>
+
+            <span>
+                Find exciting events and reserve your preferred seat.
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- Search and Filter -->
+    <section class="search-section">
+
+        <div class="search-container">
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search events..."
+                >
+
+                <button id="searchButton">
+                    Search
+                </button>
+
+            </div>
+
+
+            <select id="categoryFilter">
+
+                <option value="all">
+                    All Categories
+                </option>
+
+                <option value="music">
+                    Music
+                </option>
+
+                <option value="cultural">
+                    Cultural
+                </option>
+
+                <option value="college">
+                    College
+                </option>
+
+                <option value="sports">
+                    Sports
+                </option>
+
+                <option value="technology">
+                    Technology
+                </option>
+
+            </select>
+
+        </div>
+
+    </section>
+
+
+    <!-- Events -->
+    <main class="events-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <p>EXPLORE EVENTS</p>
+
+                <h2>Popular Upcoming Events</h2>
+
+            </div>
+
+            <span id="eventCount">
+                6 Events
+            </span>
+
+        </div>
+
+
+        <div class="events-grid" id="eventsContainer">
+
+
+            <!-- Event 1 -->
+            <div
+                class="event-card"
+                data-category="music"
+                data-name="Summer Music Festival"
+            >
+
+                <div class="event-image music-image">
+
+                    <span class="category">
+                        Music
+                    </span>
+
+                    <span class="date-badge">
+                        AUG<br>
+                        20
+                    </span>
+
+                </div>
+
+                <div class="event-content">
+
+                    <h3>
+                        Summer Music Festival
+                    </h3>
+
+                    <p class="event-info">
+                        📅 20 August 2026
+                    </p>
+
+                    <p class="event-info">
+                        🕐 6:00 PM - 10:00 PM
+                    </p>
+
+                    <p class="event-info">
+                        📍 Trichy Convention Hall
+                    </p>
+
+                    <div class="event-bottom">
+
+                        <div>
+                            <span class="price-label">
+                                Ticket from
+                            </span>
+
+                            <strong>
+                                ₹500
+                            </strong>
+                        </div>
+
+                        <a
+                            href="event-details.html"
+                            class="details-btn"
+                        >
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Event 2 -->
+            <div
+                class="event-card"
+                data-category="cultural"
+                data-name="College Cultural Fest"
+            >
+
+                <div class="event-image cultural-image">
+
+                    <span class="category">
+                        Cultural
+                    </span>
+
+                    <span class="date-badge">
+                        AUG<br>
+                        24
+                    </span>
+
+                </div>
+
+                <div class="event-content">
+
+                    <h3>
+                        College Cultural Fest
+                    </h3>
+
+                    <p class="event-info">
+                        📅 24 August 2026
+                    </p>
+
+                    <p class="event-info">
+                        🕐 9:00 AM - 6:00 PM
+                    </p>
+
+                    <p class="event-info">
+                        📍 J.J. College Auditorium
+                    </p>
+
+                    <div class="event-bottom">
+
+                        <div>
+                            <span class="price-label">
+                                Ticket from
+                            </span>
+
+                            <strong>
+                                ₹250
+                            </strong>
+                        </div>
+
+                        <a
+                            href="event-details.html"
+                            class="details-btn"
+                        >
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Event 3 -->
+            <div
+                class="event-card"
+                data-category="technology"
+                data-name="Tech Innovation Summit"
+            >
+
+                <div class="event-image technology-image">
+
+                    <span class="category">
+                        Technology
+                    </span>
+
+                    <span class="date-badge">
+                        AUG<br>
+                        28
+                    </span>
+
+                </div>
+
+                <div class="event-content">
+
+                    <h3>
+                        Tech Innovation Summit
+                    </h3>
+
+                    <p class="event-info">
+                        📅 28 August 2026
+                    </p>
+
+                    <p class="event-info">
+                        🕐 10:00 AM - 4:00 PM
+                    </p>
+
+                    <p class="event-info">
+                        📍 Chennai Trade Centre
+                    </p>
+
+                    <div class="event-bottom">
+
+                        <div>
+                            <span class="price-label">
+                                Ticket from
+                            </span>
+
+                            <strong>
+                                ₹350
+                            </strong>
+                        </div>
+
+                        <a
+                            href="event-details.html"
+                            class="details-btn"
+                        >
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Event 4 -->
+            <div
+                class="event-card"
+                data-category="sports"
+                data-name="Inter College Sports Meet"
+            >
+
+                <div class="event-image sports-image">
+
+                    <span class="category">
+                        Sports
+                    </span>
+
+                    <span class="date-badge">
+                        SEP<br>
+                        02
+                    </span>
+
+                </div>
+
+                <div class="event-content">
+
+                    <h3>
+                        Inter College Sports Meet
+                    </h3>
+
+                    <p class="event-info">
+                        📅 02 September 2026
+                    </p>
+
+                    <p class="event-info">
+                        🕐 8:00 AM - 5:00 PM
+                    </p>
+
+                    <p class="event-info">
+                        📍 Anna Stadium
+                    </p>
+
+                    <div class="event-bottom">
+
+                        <div>
+                            <span class="price-label">
+                                Ticket from
+                            </span>
+
+                            <strong>
+                                ₹150
+                            </strong>
+                        </div>
+
+                        <a
+                            href="event-details.html"
+                            class="details-btn"
+                        >
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Event 5 -->
+            <div
+                class="event-card"
+                data-category="music"
+                data-name="Live Concert Night"
+            >
+
+                <div class="event-image concert-image">
+
+                    <span class="category">
+                        Music
+                    </span>
+
+                    <span class="date-badge">
+                        SEP<br>
+                        08
+                    </span>
+
+                </div>
+
+                <div class="event-content">
+
+                    <h3>
+                        Live Concert Night
+                    </h3>
+
+                    <p class="event-info">
+                        📅 08 September 2026
+                    </p>
+
+                    <p class="event-info">
+                        🕐 7:00 PM - 11:00 PM
+                    </p>
+
+                    <p class="event-info">
+                        📍 Chennai Indoor Stadium
+                    </p>
+
+                    <div class="event-bottom">
+
+                        <div>
+                            <span class="price-label">
+                                Ticket from
+                            </span>
+
+                            <strong>
+                                ₹750
+                            </strong>
+                        </div>
+
+                        <a
+                            href="event-details.html"
+                            class="details-btn"
+                        >
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Event 6 -->
+            <div
+                class="event-card"
+                data-category="college"
+                data-name="Student Talent Show"
+            >
+
+                <div class="event-image college-image">
+
+                    <span class="category">
+                        College
+                    </span>
+
+                    <span class="date-badge">
+                        SEP<br>
+                        15
+                    </span>
+
+                </div>
+
+                <div class="event-content">
+
+                    <h3>
+                        Student Talent Show
+                    </h3>
+
+                    <p class="event-info">
+                        📅 15 September 2026
+                    </p>
+
+                    <p class="event-info">
+                        🕐 5:00 PM - 9:00 PM
+                    </p>
+
+                    <p class="event-info">
+                        📍 College Open Auditorium
+                    </p>
+
+                    <div class="event-bottom">
+
+                        <div>
+                            <span class="price-label">
+                                Ticket from
+                            </span>
+
+                            <strong>
+                                ₹200
+                            </strong>
+                        </div>
+
+                        <a
+                            href="event-details.html"
+                            class="details-btn"
+                        >
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- No Results -->
+        <div
+            id="noResults"
+            class="no-results"
+        >
+
+            <div>🔍</div>
+
+            <h3>No Events Found</h3>
+
+            <p>
+                Try searching with a different event name or category.
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+
+                <h3>EventBook</h3>
+
+                <p>
+                    Event Ticketing & Seat Booking Platform
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>Quick Links</h4>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="events.html">
+                    Events
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+                <a href="register.html">
+                    Register
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>Contact</h4>
+
+                <p>
+                    Email: support@eventbook.com
+                </p>
+
+                <p>
+                    Phone: +91 98765 43210
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <p>
+                © 2026 EventBook. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/events.js"></script>
+
+</body>
+</html>
