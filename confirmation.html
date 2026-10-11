@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Booking Confirmation - EventBook</title>
+
+    <link rel="stylesheet" href="css/confirmation.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            Event<span>Book</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="login.html">Login</a>
+        </nav>
+
+    </header>
+
+
+    <main class="confirmation-section">
+
+        <div class="confirmation-card">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h1>Booking Confirmed!</h1>
+
+            <p class="success-message">
+                Your payment was successful and your event booking
+                has been confirmed.
+            </p>
+
+
+            <div class="booking-id-box">
+
+                <span>Booking ID</span>
+
+                <strong id="bookingId">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div class="details">
+
+                <h2>Booking Details</h2>
+
+
+                <div class="detail-row">
+
+                    <span>Customer Name</span>
+
+                    <strong id="customerName">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>Email</span>
+
+                    <strong id="customerEmail">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>Event</span>
+
+                    <strong>
+                        Summer Music Festival
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>Date</span>
+
+                    <strong>
+                        20 August 2026
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>Venue</span>
+
+                    <strong>
+                        Trichy Convention Hall
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>Selected Seats</span>
+
+                    <strong id="selectedSeats">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>Number of Seats</span>
+
+                    <strong id="seatCount">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>Payment Status</span>
+
+                    <strong class="paid">
+                        Paid
+                    </strong>
+
+                </div>
+
+
+                <div class="total-row">
+
+                    <span>Total Amount</span>
+
+                    <strong id="totalAmount">
+                        ₹0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="action-buttons">
+
+                <button
+                    type="button"
+                    id="ticketButton"
+                    class="ticket-button"
+                >
+                    View Ticket
+                </button>
+
+                <a
+                    href="events.html"
+                    class="events-button"
+                >
+                    Browse More Events
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 EventBook. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="js/confirmation.js"></script>
+
+</body>
+</html>

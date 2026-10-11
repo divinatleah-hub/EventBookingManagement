@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification - Event Ticketing</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .otp-container {
+            width: 380px;
+            padding: 35px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        #otp {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 22px;
+            text-align: center;
+            letter-spacing: 6px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5568d8;
+        }
+
+        #otpMessage {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #d9534f;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="otp-container">
+
+        <h2>OTP Verification</h2>
+
+        <p>
+            Enter the OTP sent to your registered email address.
+        </p>
+
+        <form id="otpForm">
+
+            <input
+                type="text"
+                id="otp"
+                maxlength="6"
+                placeholder="Enter OTP"
+                autocomplete="one-time-code"
+                required
+            >
+
+            <button type="submit">
+                Verify OTP
+            </button>
+
+        </form>
+
+        <p id="otpMessage"></p>
+
+    </div>
+
+    <script src="js/otp-verification.js"></script>
+
+</body>
+</html>
